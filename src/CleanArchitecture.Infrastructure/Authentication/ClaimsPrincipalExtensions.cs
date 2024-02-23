@@ -1,8 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace CleanArchitecture.Infrastructure.Persistence.Authentication;
-
 internal static class ClaimsPrincipalExtensions
 {
     public static Guid GetUserId(this ClaimsPrincipal? principal)

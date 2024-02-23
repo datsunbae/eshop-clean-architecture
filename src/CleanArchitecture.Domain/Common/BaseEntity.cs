@@ -1,30 +1,12 @@
-﻿using MassTransit;
+﻿namespace CleanArchitecture.Domain.Common;
 
-namespace CleanArchitecture.Domain.Common;
-
-public abstract class BaseEntity : BaseEntity<DefaultIdType>
+public abstract class BaseEntity
 {
-    protected BaseEntity() => Id = NewId.Next().ToGuid();
-}
-
-public abstract class BaseEntity<TId>
-{
-    private readonly List<IDomainEvent> _domainEvents = new();
-
-    public TId Id { get; protected set; } = default!;
-
-    public IReadOnlyList<IDomainEvent> GetDomainEvents()
-    {
-        return _domainEvents.ToList();
-    }
-
-    protected void RaiseDomainEvent(IDomainEvent domainEvent)
-    {
-        _domainEvents.Add(domainEvent);
-    }
-
-    public void ClearDomainEvents()
-    {
-        _domainEvents.Clear();
-    }
+    public Guid Id { get; protected set; }
+    public Guid CreatedBy { get; protected set; } 
+    public DateTime CreatedOn { get; protected set; }
+    public Guid LastModifiedBy { get; protected set; }
+    public DateTime? LastModifiedOn { get; protected set; }
+    public DateTime? DeletedOn { get; protected set; }
+    public Guid? DeletedBy { get; protected set; }
 }

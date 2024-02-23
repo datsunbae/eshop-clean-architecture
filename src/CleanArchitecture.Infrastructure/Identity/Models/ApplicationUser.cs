@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace CleanArchitecture.Infrastructure.Persistence.DataAccess.Entities;
+namespace CleanArchitecture.Infrastructure.Identity.Models;
 
 public sealed class ApplicationUser : IdentityUser<Guid>
 {

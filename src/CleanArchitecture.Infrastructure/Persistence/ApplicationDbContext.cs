@@ -1,10 +1,10 @@
-﻿using CleanArchitecture.Infrastructure.Persistence.DataAccess.Entities;
+﻿using CleanArchitecture.Infrastructure.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace CleanArchitecture.Infrastructure.Persistence.DataAccess;
+namespace CleanArchitecture.Infrastructure.Persistence;
 
 public sealed class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
 {
@@ -17,6 +17,8 @@ public sealed class ApplicationDbContext : IdentityDbContext<ApplicationUser, Id
         base.OnModelCreating(builder);
 
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+        #region Identity configurations
 
         builder.HasDefaultSchema("Identity");
 
@@ -48,12 +50,13 @@ public sealed class ApplicationDbContext : IdentityDbContext<ApplicationUser, Id
         builder.Entity<IdentityRoleClaim<Guid>>(entity =>
         {
             entity.ToTable("RoleClaims");
-
         });
 
         builder.Entity<IdentityUserToken<Guid>>(entity =>
         {
             entity.ToTable("UserTokens");
         });
+
+        #endregion
     }
 }

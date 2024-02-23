@@ -1,10 +1,10 @@
-﻿using CleanArchitecture.Domain.Common;
-using CleanArchitecture.Infrastructure.Persistence.DataAccess.Repositories.Common;
+﻿using CleanArchitecture.Application.Common.Interfaces;
+using CleanArchitecture.Domain.Common;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore;
-using CleanArchitecture.Application.Common.Interfaces;
+using CleanArchitecture.Infrastructure.Persistence.Repositories.Common;
 
-namespace CleanArchitecture.Infrastructure.Persistence.DataAccess;
+namespace CleanArchitecture.Infrastructure.Persistence;
 
 public sealed class UnitOfWork : IUnitOfWork
 {
@@ -47,7 +47,7 @@ public sealed class UnitOfWork : IUnitOfWork
         {
             if (entityEntry.State == EntityState.Added)
             {
-                entityEntry.Property(a => a.Created)
+                entityEntry.Property(a => a.CreatedOn)
                     .CurrentValue = DateTime.UtcNow;
 
                 entityEntry.Property(a => a.CreatedBy)
@@ -56,7 +56,7 @@ public sealed class UnitOfWork : IUnitOfWork
 
             if (entityEntry.State == EntityState.Modified)
             {
-                entityEntry.Property(a => a.LastModified)
+                entityEntry.Property(a => a.LastModifiedOn)
                     .CurrentValue = DateTime.UtcNow;
 
                 entityEntry.Property(a => a.LastModifiedBy)
