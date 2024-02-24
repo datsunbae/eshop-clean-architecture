@@ -7,14 +7,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Enums\**" />
+    <Compile Remove="Events\**" />
+    <Compile Remove="ValueObjects\**" />
+    <EmbeddedResource Remove="Enums\**" />
+    <EmbeddedResource Remove="Events\**" />
+    <EmbeddedResource Remove="ValueObjects\**" />
+    <None Remove="Enums\**" />
+    <None Remove="Events\**" />
+    <None Remove="ValueObjects\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MediatR" Version="12.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Constants\" />
-    <Folder Include="Enums\" />
-    <Folder Include="Events\" />
-    <Folder Include="ValueObjects\" />
+    <Folder Include="Product\Enums\" />
+    <Folder Include="Product\Events\" />
+    <Folder Include="Product\ValueObjects\" />
   </ItemGroup>
 
 </Project>
