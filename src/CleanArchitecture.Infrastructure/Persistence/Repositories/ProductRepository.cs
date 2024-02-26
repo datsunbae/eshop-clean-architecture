@@ -1,6 +1,4 @@
-﻿using Ardalis.Specification.EntityFrameworkCore;
-using CleanArchitecture.Application.Common.Interfaces.Repositories;
-using CleanArchitecture.Domain.Common;
+﻿using CleanArchitecture.Application.Common.Interfaces.Repositories;
 using CleanArchitecture.Domain.Product;
 using CleanArchitecture.Infrastructure.Persistence.Repositories.Common;
 using Microsoft.EntityFrameworkCore;

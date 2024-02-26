@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Domain.Common;
+﻿using CleanArchitecture.Application.Common.Interfaces.Persistence;
 using MediatR;
 using System.Transactions;
 
