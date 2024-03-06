@@ -20,11 +20,10 @@ public interface IUserService
 
     Task<List<string>> GetPermissionsAsync(Guid userId, CancellationToken cancellationToken);
     Task<bool> HasPermissionAsync(Guid userId, string permission, CancellationToken cancellationToken = default);
-    Task InvalidatePermissionCacheAsync(Guid userId, CancellationToken cancellationToken);
 
     Task ToggleStatusAsync(ToggleUserStatusRequest request, CancellationToken cancellationToken);
 
-    Task<string> GetOrCreateFromPrincipalAsync(ClaimsPrincipal principal);
+    Task<Guid> GetOrCreateFromPrincipalAsync(ClaimsPrincipal principal);
     Task<string> CreateAsync(CreateUserRequest request, string origin);
     Task UpdateAsync(UpdateUserRequest request, Guid userId);
 

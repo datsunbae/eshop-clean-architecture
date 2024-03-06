@@ -6,11 +6,11 @@ namespace CleanArchitecture.Identity.Services;
 
 internal partial class UserService
 {
-    public async Task<List<UserRoleResponse>> GetRolesAsync(string userId, CancellationToken cancellationToken)
+    public async Task<List<UserRoleResponse>> GetRolesAsync(Guid userId, CancellationToken cancellationToken)
     {
         var userRoles = new List<UserRoleResponse>();
 
-        var user = await _userManager.FindByIdAsync(userId);
+        var user = await _userManager.FindByIdAsync(userId.ToString());
         if (user is null) throw new NotFoundException("User Not Found.");
         var roles = await _roleManager.Roles.AsNoTracking().ToListAsync(cancellationToken);
         if (roles is null) throw new NotFoundException("Roles Not Found.");

@@ -46,9 +46,9 @@ internal partial class UserService
             : throw new InternalServerException("An Error has occurred!");
     }
 
-    public async Task ChangePasswordAsync(ChangePasswordRequest model, string userId)
+    public async Task ChangePasswordAsync(ChangePasswordRequest model, Guid userId)
     {
-        var user = await _userManager.FindByIdAsync(userId);
+        var user = await _userManager.FindByIdAsync(userId.ToString());
 
         _ = user ?? throw new NotFoundException("User Not Found.");
 

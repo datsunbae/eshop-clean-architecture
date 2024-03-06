@@ -4,12 +4,14 @@ using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Common.FileStorage;
 using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Application.Identity.Users;
+using CleanArchitecture.Application.Identity.Users.Password;
 using CleanArchitecture.Domain.Constants.Authorization;
 using CleanArchitecture.Identity.DatabaseContext;
 using CleanArchitecture.Identity.Entities;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace CleanArchitecture.Identity.Services;
 
@@ -62,10 +64,11 @@ internal partial class UserService : IUserService
         return await _userManager.Users.FirstOrDefaultAsync(x => x.PhoneNumber == phoneNumber) is ApplicationUser user && user.Id != exceptId;
     }
 
-    public async Task<List<ApplicationUser>> GetListAsync(CancellationToken cancellationToken) =>
+    public async Task<List<UserResponse>> GetListAsync(CancellationToken cancellationToken) =>
         (await _userManager.Users
                 .AsNoTracking()
-                .ToListAsync(cancellationToken));
+                .ToListAsync(cancellationToken))
+            .Adapt<List<UserResponse>>();
 
     public Task<int> GetCountAsync(CancellationToken cancellationToken) =>
         _userManager.Users.AsNoTracking().CountAsync(cancellationToken);

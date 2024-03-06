@@ -142,9 +142,9 @@ internal partial class UserService
         return string.Join(Environment.NewLine, messages);
     }
 
-    public async Task UpdateAsync(UpdateUserRequest request, string userId)
+    public async Task UpdateAsync(UpdateUserRequest request, Guid userId)
     {
-        var user = await _userManager.FindByIdAsync(userId);
+        var user = await _userManager.FindByIdAsync(userId.ToString());
 
         _ = user ?? throw new NotFoundException("User Not Found.");
 

@@ -1,13 +1,13 @@
-﻿using Ardalis.Specification.EntityFrameworkCore;
+﻿using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Application.Common.Persistence.Repositories;
 using CleanArchitecture.Domain.Products;
-using Microsoft.EntityFrameworkCore;
+using CleanArchitecture.Infrastructure.Persistence;
 
 namespace CleanArchitecture.Persistence.Repositories;
 
-public class ProductRepository : RepositoryBase<Product>, IProductRepository
+public class ProductRepository : Repository<Product>, IProductRepository
 {
-    public ProductRepository(DbContext dbContext) : base(dbContext)
+    public ProductRepository(ApplicationDbContext dbContext, ICurrentUser currentUser) : base(dbContext, currentUser)
     {
     }
 }

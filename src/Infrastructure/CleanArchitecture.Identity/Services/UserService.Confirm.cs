@@ -19,7 +19,7 @@ internal partial class UserService
         return verificationUri;
     }
 
-    public async Task<string> ConfirmEmailAsync(Guid userId, string code, string tenant, CancellationToken cancellationToken)
+    public async Task<string> ConfirmEmailAsync(Guid userId, string code, CancellationToken cancellationToken)
     {
         var user = await _userManager.Users
             .Where(u => u.Id == userId && !u.EmailConfirmed)
@@ -35,9 +35,9 @@ internal partial class UserService
             : throw new InternalServerException(string.Format("An error occurred while confirming {0}", user.Email));
     }
 
-    public async Task<string> ConfirmPhoneNumberAsync(string userId, string code)
+    public async Task<string> ConfirmPhoneNumberAsync(Guid userId, string code)
     {
-        var user = await _userManager.FindByIdAsync(userId);
+        var user = await _userManager.FindByIdAsync(userId.ToString());
 
         _ = user ?? throw new InternalServerException("An error occurred while confirming Mobile Phone.");
         if (string.IsNullOrEmpty(user.PhoneNumber)) throw new InternalServerException("An error occurred while confirming Mobile Phone.");

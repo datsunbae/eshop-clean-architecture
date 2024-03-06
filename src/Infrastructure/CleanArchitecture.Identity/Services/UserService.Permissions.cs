@@ -6,9 +6,9 @@ namespace CleanArchitecture.Identity.Services;
 
 internal partial class UserService
 {
-    public async Task<List<string>> GetPermissionsAsync(string userId, CancellationToken cancellationToken)
+    public async Task<List<string>> GetPermissionsAsync(Guid userId, CancellationToken cancellationToken)
     {
-        var user = await _userManager.FindByIdAsync(userId);
+        var user = await _userManager.FindByIdAsync(userId.ToString());
 
         _ = user ?? throw new UnauthorizedException("Authentication Failed.");
 
@@ -27,7 +27,7 @@ internal partial class UserService
         return permissions.Distinct().ToList();
     }
 
-    public async Task<bool> HasPermissionAsync(string userId, string permission, CancellationToken cancellationToken)
+    public async Task<bool> HasPermissionAsync(Guid userId, string permission, CancellationToken cancellationToken)
     {
         var permissions = await GetPermissionsAsync(userId, cancellationToken);
 
