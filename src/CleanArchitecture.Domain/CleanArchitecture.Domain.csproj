@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Constants\" />
     <Folder Include="Product\Enums\" />
     <Folder Include="Product\Events\" />
     <Folder Include="Product\ValueObjects\" />

@@ -16,7 +16,12 @@
     <PackageReference Include="Dapper" Version="2.1.28" />
     <PackageReference Include="FluentValidation" Version="11.9.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
+    <PackageReference Include="Mapster" Version="7.4.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="UseCases\V1\Products\Dtos\" />
   </ItemGroup>
 
 </Project>

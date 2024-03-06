@@ -14,12 +14,12 @@ namespace CleanArchitecture.Infrastructure.Persistence;
 public sealed class UnitOfWork : IUnitOfWork
 {
     private readonly ApplicationDbContext _dbContext;
-    private readonly IUserContext _userContext;
+    private readonly ICurrentUser _userContext;
     private readonly IDateTimeService _dateTimeService;
 
     public UnitOfWork(
         ApplicationDbContext dbContext,
-        IUserContext userContext,
+        ICurrentUser userContext,
         IDateTimeService dateTimeService)
     {
         _dbContext = dbContext;

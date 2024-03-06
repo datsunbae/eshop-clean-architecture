@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Application.Common.Interfaces.Persistence;
-using CleanArchitecture.Application.Common.Interfaces.Repositories;
+using CleanArchitecture.Application.Common.Interfaces.Persistence.Repositories;
+using CleanArchitecture.Application.Common.Interfaces.ServiceLifetime;
 using CleanArchitecture.Application.Common.Interfaces.Services;
 using CleanArchitecture.Infrastructure.Outbox;
 using CleanArchitecture.Infrastructure.Persistence;
