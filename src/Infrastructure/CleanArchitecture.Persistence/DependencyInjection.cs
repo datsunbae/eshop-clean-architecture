@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.Persistence.DependencyInjection.Extensions;
+namespace CleanArchitecture.Persistence;
 
 public static class DependencyInjection
 {

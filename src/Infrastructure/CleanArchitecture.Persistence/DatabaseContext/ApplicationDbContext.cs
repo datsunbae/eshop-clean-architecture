@@ -1,5 +1,5 @@
 ﻿using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Common.Interfaces;
+using CleanArchitecture.Application.Common.Interfaces.Auth;
 using CleanArchitecture.Application.Common.Persistence;
 using CleanArchitecture.Domain.Categories;
 using CleanArchitecture.Domain.Common;

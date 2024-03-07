@@ -9,17 +9,13 @@
   <ItemGroup>
     <PackageReference Include="Hangfire" Version="1.8.11" />
     <PackageReference Include="Hangfire.SqlServer" Version="1.8.11" />
+    <PackageReference Include="MailKit" Version="4.4.0" />
+    <PackageReference Include="MimeKit" Version="4.4.0" />
+    <PackageReference Include="RazorEngineCore" Version="2023.11.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\CleanArchitecture.Application\CleanArchitecture.Application.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DependencyInjection\Options\" />
-    <Folder Include="Email\" />
-    <Folder Include="Caching\" />
-    <Folder Include="Notifications\" />
   </ItemGroup>
 
 </Project>

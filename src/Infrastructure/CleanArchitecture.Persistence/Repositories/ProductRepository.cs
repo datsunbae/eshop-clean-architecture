@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
+﻿using CleanArchitecture.Application.Common.Interfaces.Auth;
 using CleanArchitecture.Application.Common.Persistence.Repositories;
 using CleanArchitecture.Domain.Products;
 using CleanArchitecture.Infrastructure.Persistence;
