@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace CleanArchitecture.Identity.Settings.Jwt;
+namespace CleanArchitecture.Identity.Auth.Jwt;
 
 public class JwtSettings : IValidatableObject
 {

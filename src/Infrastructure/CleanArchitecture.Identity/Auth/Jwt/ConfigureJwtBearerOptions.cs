@@ -5,7 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
 
-namespace CleanArchitecture.Identity.Settings.Jwt;
+namespace CleanArchitecture.Identity.Auth.Jwt;
 
 public class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions>
 {

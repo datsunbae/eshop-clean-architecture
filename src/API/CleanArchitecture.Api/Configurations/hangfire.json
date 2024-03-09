@@ -1,0 +1,14 @@
+{
+  "HangfireSettings": {
+    "Route": "/jobs",
+    "Dashboard": {
+      "AppPath": "/",
+      "StatsPollingInterval": 2000,
+      "DashboardTitle": "Jobs"
+    },
+    "Credentials": {
+      "User": "Admin",
+      "Password": "S3(r3tP@55w0rd"
+    }
+  }
+}

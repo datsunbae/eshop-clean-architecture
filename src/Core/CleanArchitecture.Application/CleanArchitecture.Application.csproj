@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DependencyInjection\Options\" />
     <Folder Include="Features\V1\Products\Events\" />
   </ItemGroup>
 
