@@ -1,0 +1,35 @@
+{
+  "LoggerSettings": {
+    "Serilog": {
+      "Using": [ "Serilog.Sinks.Console", "Serilog.Sinks.File" ],
+      "MinimumLevel": {
+        "Default": "Error",
+        "Override": {
+          "Microsoft": "Error",
+          "System": "Error"
+        }
+      },
+      "WriteTo": [
+        {
+          "Name": "Console",
+          "Args": {
+            "Theme": "Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme::Code, Serilog.Sinks.Console"
+          }
+        },
+        {
+          "Name": "File",
+          "Args": {
+            "path": "logs/log-.txt",
+            "rollingInterval": "Day",
+            "shared": true
+          }
+        }
+      ],
+      "Enrich": [
+        "FromLogContext",
+        "WithMachineName",
+        "WithThreadId"
+      ]
+    }
+  }
+}

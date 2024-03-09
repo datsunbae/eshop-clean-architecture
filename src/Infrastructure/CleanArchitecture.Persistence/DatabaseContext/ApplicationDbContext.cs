@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Reflection;
 
-namespace CleanArchitecture.Infrastructure.Persistence;
+namespace CleanArchitecture.Persistence;
 
 public sealed class ApplicationDbContext : DbContext, IUnitOfWork
 {

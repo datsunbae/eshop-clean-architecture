@@ -1,7 +1,11 @@
 ﻿using CleanArchitecture.Application.Common.Caching;
+using CleanArchitecture.Application.Common.Email;
+using CleanArchitecture.Application.Common.FileStorage;
 using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Infrastructure.BackgroundJobs;
 using CleanArchitecture.Infrastructure.Caching;
+using CleanArchitecture.Infrastructure.Email;
+using CleanArchitecture.Infrastructure.FileStorage;
 using CleanArchitecture.Infrastructure.Notifications;
 using CleanArchitecture.Infrastructure.Services;
 using FSH.WebApi.Infrastructure.Caching;
@@ -24,7 +28,8 @@ public static class DependencyInjection
             .AddBackgroundJobs(config)
             .AddCaching(config)
             .AddMail(config)
-            .AddNotifications();
+            .AddNotifications()
+            .AddFileStorage();
 
         services.AddServices();
 
@@ -51,6 +56,7 @@ public static class DependencyInjection
     {
         services.AddScoped<ISerializerService, NewtonSoftService>();
         services.AddScoped<IDateTimeService, DateTimeService>();
+        services.AddScoped<IJobService, HangfireService>();
 
         return services;
     }
@@ -116,8 +122,13 @@ public static class DependencyInjection
         return services;
     }
 
-    private static IServiceCollection AddMail(this IServiceCollection services, IConfiguration config) =>
+    private static IServiceCollection AddMail(this IServiceCollection services, IConfiguration config)
+    {
         services.Configure<MailSettings>(config.GetSection(nameof(MailSettings)));
+        services.AddScoped<IEmailTemplateService, EmailTemplateService>();
+        services.AddScoped<IMailService, SmtpMailService>();
+        return services;
+    }
 
     private static IApplicationBuilder UseFileStorage(this IApplicationBuilder app) =>
         app.UseStaticFiles(new StaticFileOptions()
@@ -125,6 +136,10 @@ public static class DependencyInjection
             FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Files")),
             RequestPath = new PathString("/Files")
         });
+
+    public static IServiceCollection AddFileStorage(this IServiceCollection services) =>
+        services.AddScoped<IFileStorageService, LocalFileStorageService>();
+
 
     private static IServiceCollection AddNotifications(this IServiceCollection services)
     {

@@ -11,9 +11,12 @@ public class CreateOrUpdateRoleRequest
 
 public class CreateOrUpdateRoleRequestValidator : AbstractValidator<CreateOrUpdateRoleRequest>
 {
-    public CreateOrUpdateRoleRequestValidator(IRoleService roleService) =>
+    public CreateOrUpdateRoleRequestValidator(IRoleService roleService)
+    {
         RuleFor(r => r.Name)
             .NotEmpty()
             .MustAsync(async (role, name, _) => !await roleService.ExistsAsync(name, role.Id))
                 .WithMessage("Similar Role already exists.");
+    }
+
 }

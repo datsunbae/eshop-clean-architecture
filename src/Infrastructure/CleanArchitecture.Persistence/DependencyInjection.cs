@@ -1,7 +1,5 @@
-﻿using Ardalis.Specification.EntityFrameworkCore;
-using CleanArchitecture.Application.Common.Persistence;
+﻿using CleanArchitecture.Application.Common.Persistence;
 using CleanArchitecture.Application.Common.Persistence.Repositories;
-using CleanArchitecture.Infrastructure.Persistence;
 using CleanArchitecture.Persistence.Outbox;
 using CleanArchitecture.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +15,7 @@ public static class DependencyInjection
     {
         string connectionString = configuration.GetConnectionString("DefaultConnection") ??
                                   throw new ArgumentNullException(nameof(configuration));
+
 
         services.AddDbContext<ApplicationDbContext>(options =>
         {
