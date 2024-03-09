@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CleanArchitecture.Api</name>
+    </assembly>
+    <members>
+        <member name="T:CleanArchitecture.Api.Controllers.V1.CategoryController">
+            <summary>
+            Ok
+            </summary>
+        </member>
+        <member name="M:CleanArchitecture.Api.Controllers.V1.CategoryController.Create(CleanArchitecture.Application.Features.V1.Products.Queries.GetProducts.GetProductsQuery)">
+            <summary>
+            Hello
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

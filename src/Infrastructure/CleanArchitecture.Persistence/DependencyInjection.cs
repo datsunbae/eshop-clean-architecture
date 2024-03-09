@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Application.Common.Persistence;
 using CleanArchitecture.Application.Common.Persistence.Repositories;
+using CleanArchitecture.Persistence.Common;
 using CleanArchitecture.Persistence.Outbox;
 using CleanArchitecture.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;

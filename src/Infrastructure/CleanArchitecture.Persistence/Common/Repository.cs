@@ -3,7 +3,7 @@ using CleanArchitecture.Application.Common.Interfaces.Auth;
 using CleanArchitecture.Application.Common.Persistence;
 using CleanArchitecture.Domain.Common;
 
-namespace CleanArchitecture.Persistence.Repositories;
+namespace CleanArchitecture.Persistence.Common;
 
 public class Repository<TEntity> : RepositoryBase<TEntity>, IRepository<TEntity>
     where TEntity : BaseEntity, IAggregateRoot

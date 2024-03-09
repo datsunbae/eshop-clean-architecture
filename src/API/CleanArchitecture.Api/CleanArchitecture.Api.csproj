@@ -5,16 +5,14 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>false</InvariantGlobalization>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>API.xml</DocumentationFile>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="NewFolder\**" />
-    <Content Remove="NewFolder\**" />
-    <EmbeddedResource Remove="NewFolder\**" />
-    <None Remove="NewFolder\**" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="Asp.Versioning.Http" Version="8.0.0" />
+    <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -27,6 +25,12 @@
     <ProjectReference Include="..\..\Infrastructure\CleanArchitecture.Identity\CleanArchitecture.Identity.csproj" />
     <ProjectReference Include="..\..\Infrastructure\CleanArchitecture.Infrastructure\CleanArchitecture.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Infrastructure\CleanArchitecture.Persistence\CleanArchitecture.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\Identity\" />
+    <Folder Include="Controllers\V1\" />
+    <Folder Include="Middlewares\" />
   </ItemGroup>
 
 </Project>
