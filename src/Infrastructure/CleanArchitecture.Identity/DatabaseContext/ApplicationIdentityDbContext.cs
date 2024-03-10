@@ -32,7 +32,7 @@ public class ApplicationIdentityDbContext : IdentityDbContext<
             entity.ToTable(name: "User");
         });
 
-        builder.Entity<IdentityRole>(entity =>
+        builder.Entity<ApplicationRole>(entity =>
         {
             entity.ToTable(name: "Role");
         });
@@ -52,7 +52,7 @@ public class ApplicationIdentityDbContext : IdentityDbContext<
             entity.ToTable("UserLogins");
         });
 
-        builder.Entity<IdentityRoleClaim<Guid>>(entity =>
+        builder.Entity<ApplicationRoleClaim>(entity =>
         {
             entity.ToTable("RoleClaims");
         });

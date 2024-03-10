@@ -41,21 +41,19 @@ public static class Permissions
         new("Delete Roles", Action.Delete, Resource.Roles),
         new("View RoleClaims", Action.View, Resource.RoleClaims),
         new("Update RoleClaims", Action.Update, Resource.RoleClaims),
-        new("View Products", Action.View, Resource.Products, IsBasic: true),
-        new("Search Products", Action.Search, Resource.Products, IsBasic: true),
+        new("View Products", Action.View, Resource.Products, IsCustomer: true),
+        new("Search Products", Action.Search, Resource.Products, IsCustomer: true),
         new("Create Products", Action.Create, Resource.Products),
         new("Update Products", Action.Update, Resource.Products),
         new("Delete Products", Action.Delete, Resource.Products),
         new("Export Products", Action.Export, Resource.Products),
     };
 
-    public static IReadOnlyList<Permission> All { get; } = new ReadOnlyCollection<Permission>(_all);
-    public static IReadOnlyList<Permission> Root { get; } = new ReadOnlyCollection<Permission>(_all.Where(p => p.IsRoot).ToArray());
-    public static IReadOnlyList<Permission> Admin { get; } = new ReadOnlyCollection<Permission>(_all.Where(p => !p.IsRoot).ToArray());
-    public static IReadOnlyList<Permission> Basic { get; } = new ReadOnlyCollection<Permission>(_all.Where(p => p.IsBasic).ToArray());
+    public static IReadOnlyList<Permission> Admin { get; } = new ReadOnlyCollection<Permission>(_all);
+    public static IReadOnlyList<Permission> Customer { get; } = new ReadOnlyCollection<Permission>(_all.Where(p => p.IsCustomer).ToArray());
 }
 
-public record Permission(string Description, string Action, string Resource, bool IsBasic = false, bool IsRoot = false)
+public record Permission(string Description, string Action, string Resource, bool IsCustomer = false)
 {
     public string Name => NameFor(Action, Resource);
     public static string NameFor(string action, string resource) => $"Permissions.{resource}.{action}";

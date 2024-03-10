@@ -6,6 +6,7 @@ using CleanArchitecture.Identity.Auth.Jwt;
 using CleanArchitecture.Identity.Auth.Permissions;
 using CleanArchitecture.Identity.DatabaseContext;
 using CleanArchitecture.Identity.Entities;
+using CleanArchitecture.Identity.Initialization;
 using CleanArchitecture.Identity.Middlewares;
 using CleanArchitecture.Identity.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -23,6 +24,8 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastureIdentity(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddTransient<ApplicationDbInitializer>();
+        services.AddTransient<ApplicationDbSeeder>();
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IRoleService, RoleService>();
@@ -39,7 +42,16 @@ public static class DependencyInjection
     public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder builder) =>
         builder
             .UseCurrentUser();
-    
+
+
+    public static async Task InitializeDatabasesAsync(this IServiceProvider services, CancellationToken cancellationToken = default)
+    {
+        // Create a new scope to retrieve scoped services
+        using var scope = services.CreateScope();
+
+        await scope.ServiceProvider.GetRequiredService<ApplicationDbInitializer>()
+            .InitializeAsync(cancellationToken);
+    }
 
     private static IApplicationBuilder UseCurrentUser(this IApplicationBuilder app) =>
         app.UseMiddleware<CurrentUserMiddleware>();

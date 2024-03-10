@@ -117,7 +117,7 @@ internal partial class UserService
             throw new InternalServerException("Validation Errors Occurred.", result.GetErrors());
         }
 
-        await _userManager.AddToRoleAsync(user, Roles.Basic);
+        await _userManager.AddToRoleAsync(user, Roles.Customer);
 
         var messages = new List<string> { string.Format("User {0} Registered.", user.UserName) };
 

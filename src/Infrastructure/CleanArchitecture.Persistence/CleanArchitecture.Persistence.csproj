@@ -17,4 +17,8 @@
     <ProjectReference Include="..\..\Core\CleanArchitecture.Application\CleanArchitecture.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Initialization\" />
+  </ItemGroup>
+
 </Project>

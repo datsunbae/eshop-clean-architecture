@@ -23,15 +23,15 @@ public static class ServiceExtensions
         services.AddSwaggerGen(options =>
         {
             options.IncludeXmlComments(xmlFilePath);
-            //options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-            //{
-            //    Name = "Authorization",
-            //    In = ParameterLocation.Header,
-            //    Type = SecuritySchemeType.ApiKey,
-            //    Scheme = "Bearer",
-            //    BearerFormat = "JWT",
-            //    Description = "Input your Bearer token in this format - Bearer {your token here} to access this API",
-            //});
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer",
+                BearerFormat = "JWT",
+                Description = "Input your Bearer token in this format - Bearer {your token here} to access this API",
+            });
             //options.AddSecurityRequirement(new OpenApiSecurityRequirement
             //    {
             //        {

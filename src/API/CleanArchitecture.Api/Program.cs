@@ -25,6 +25,8 @@ builder.Services.AddInfrastructurePersistence(builder.Configuration);
 
 var app = builder.Build();
 
+//Seeding
+await app.Services.InitializeDatabasesAsync();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
