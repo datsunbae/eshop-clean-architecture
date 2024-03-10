@@ -1,9 +1,11 @@
 ﻿using CleanArchitecture.Domain.Constants.Authorization;
+using CleanArchitecture.Identity.Auth;
 using CleanArchitecture.Identity.DatabaseContext;
 using CleanArchitecture.Identity.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace CleanArchitecture.Identity.Initialization;
 
@@ -12,15 +14,18 @@ internal class ApplicationDbSeeder
     private readonly RoleManager<ApplicationRole> _roleManager;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly ILogger<ApplicationDbSeeder> _logger;
+    private readonly AdminSetting _adminSetting;
 
     public ApplicationDbSeeder(
         RoleManager<ApplicationRole> roleManager, 
         UserManager<ApplicationUser> userManager, 
-        ILogger<ApplicationDbSeeder> logger)
+        ILogger<ApplicationDbSeeder> logger,
+        IOptions<AdminSetting> adminSetting)
     {
         _roleManager = roleManager ?? throw new ArgumentNullException(nameof(roleManager));
         _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _adminSetting = adminSetting.Value;
     }
 
     public async Task SeedDatabaseAsync(ApplicationIdentityDbContext dbContext, CancellationToken cancellationToken)
@@ -76,26 +81,25 @@ internal class ApplicationDbSeeder
 
     private async Task SeedAdminUserAsync()
     {
-        if (await _userManager.Users.FirstOrDefaultAsync(u => u.Email == "datsunbae@gmail.com")
+        if (await _userManager.Users.FirstOrDefaultAsync(u => u.Email == _adminSetting.Email)
             is not ApplicationUser adminUser)
         {
-            string adminUserName = $"{Roles.Admin}".ToLowerInvariant();
             adminUser = new ApplicationUser
             {
-                FirstName = "Kodoku",
-                LastName = Roles.Admin,
-                Email = "datsunbae@gmail.com",
-                UserName = adminUserName,
+                FirstName = _adminSetting.FirstName,
+                LastName = _adminSetting.LastName,
+                Email = _adminSetting.Email,
+                UserName = _adminSetting.UserName,
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
-                NormalizedEmail = "datsunbae@gmail.com".ToUpperInvariant(),
-                NormalizedUserName = adminUserName.ToUpperInvariant(),
+                NormalizedEmail = _adminSetting.Email.ToUpperInvariant(),
+                NormalizedUserName = _adminSetting.UserName.ToUpperInvariant(),
                 IsActive = true
             };
 
             _logger.LogInformation("Seeding Default Admin User for database.");
             var password = new PasswordHasher<ApplicationUser>();
-            adminUser.PasswordHash = password.HashPassword(adminUser, "admin123");
+            adminUser.PasswordHash = password.HashPassword(adminUser, _adminSetting.Password);
             await _userManager.CreateAsync(adminUser);
         }
 

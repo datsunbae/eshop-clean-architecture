@@ -1,4 +1,5 @@
-﻿using Swashbuckle.AspNetCore.SwaggerUI;
+﻿using CleanArchitecture.Api.Middlewares;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace CleanArchitecture.Api.Extensions;
 
@@ -6,6 +7,13 @@ public static class AppExtensions
 {
     public static IApplicationBuilder UseApiApplication(this IApplicationBuilder app)
     {
+        return app
+            .UseCustomExceptionHandler();
+    }
+
+    public static IApplicationBuilder UseCustomExceptionHandler(this IApplicationBuilder app)
+    {
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
         return app;
     }
 

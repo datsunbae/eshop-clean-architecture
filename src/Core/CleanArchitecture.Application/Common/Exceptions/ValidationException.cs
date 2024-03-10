@@ -1,11 +1,12 @@
-﻿using System.Net;
+﻿namespace CleanArchitecture.Application.Common.Exceptions;
 
-namespace CleanArchitecture.Application.Common.Exceptions;
-
-public sealed class ValidationException : DomainException
+public sealed class ValidationException : Exception
 {
     public ValidationException(IEnumerable<ValidationError> errors)
-        : base("One or more validation errors occurred", errors, HttpStatusCode.BadRequest)
     {
+        Errors = errors;
     }
+
+    public IEnumerable<ValidationError>? Errors { get; }
 }
+

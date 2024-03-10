@@ -2,6 +2,7 @@
 using CleanArchitecture.Application.Identity.Roles;
 using CleanArchitecture.Application.Identity.Tokens;
 using CleanArchitecture.Application.Identity.Users;
+using CleanArchitecture.Identity.Auth;
 using CleanArchitecture.Identity.Auth.Jwt;
 using CleanArchitecture.Identity.Auth.Permissions;
 using CleanArchitecture.Identity.DatabaseContext;
@@ -29,6 +30,8 @@ public static class DependencyInjection
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IRoleService, RoleService>();
+
+        services.Configure<AdminSetting>(configuration.GetSection("SecuritySettings:AdminSettings"));
 
         services
             .AddIdentity(configuration)
