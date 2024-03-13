@@ -1,34 +1,33 @@
-//using FSH.WebApi.Application.Identity.Tokens;
+using CleanArchitecture.Application.Identity.Tokens;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
-//namespace FSH.WebApi.Host.Controllers.Identity;
+namespace CleanArchitecture.Api.Controllers.Identity;
 
-//public sealed class TokensController : VersionNeutralApiController
-//{
-//    private readonly ITokenService _tokenService;
+[ApiController]
+[Route("api/[controller]")]
+public sealed class TokensController : ControllerBase
+{
+    private readonly ITokenService _tokenService;
 
-//    public TokensController(ITokenService tokenService) => _tokenService = tokenService;
+    public TokensController(ITokenService tokenService) => _tokenService = tokenService;
 
-//    [HttpPost]
-//    [AllowAnonymous]
-//    [TenantIdHeader]
-//    [OpenApiOperation("Request an access token using credentials.", "")]
-//    public Task<TokenResponse> GetTokenAsync(TokenRequest request, CancellationToken cancellationToken)
-//    {
-//        return _tokenService.GetTokenAsync(request, GetIpAddress()!, cancellationToken);
-//    }
+    [HttpPost]
+    [AllowAnonymous]
+    public Task<TokenResponse> GetTokenAsync(TokenRequest request, CancellationToken cancellationToken)
+    {
+        return _tokenService.GetTokenAsync(request, GetIpAddress()!, cancellationToken);
+    }
 
-//    [HttpPost("refresh")]
-//    [AllowAnonymous]
-//    [TenantIdHeader]
-//    [OpenApiOperation("Request an access token using a refresh token.", "")]
-//    [ApiConventionMethod(typeof(FSHApiConventions), nameof(FSHApiConventions.Search))]
-//    public Task<TokenResponse> RefreshAsync(RefreshTokenRequest request)
-//    {
-//        return _tokenService.RefreshTokenAsync(request, GetIpAddress()!);
-//    }
+    [HttpPost("refresh")]
+    [AllowAnonymous]
+    public Task<TokenResponse> RefreshAsync(RefreshTokenRequest request)
+    {
+        return _tokenService.RefreshTokenAsync(request, GetIpAddress()!);
+    }
 
-//    private string? GetIpAddress() =>
-//        Request.Headers.ContainsKey("X-Forwarded-For")
-//            ? Request.Headers["X-Forwarded-For"]
-//            : HttpContext.Connection.RemoteIpAddress?.MapToIPv4().ToString() ?? "N/A";
-//}
+    private string? GetIpAddress() =>
+        Request.Headers.ContainsKey("X-Forwarded-For")
+            ? Request.Headers["X-Forwarded-For"]
+            : HttpContext.Connection.RemoteIpAddress?.MapToIPv4().ToString() ?? "N/A";
+}

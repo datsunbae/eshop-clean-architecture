@@ -1,12 +1,15 @@
-﻿using Ardalis.Specification.EntityFrameworkCore;
+﻿using Ardalis.Specification;
+using Ardalis.Specification.EntityFrameworkCore;
 using CleanArchitecture.Application.Common.Interfaces.Auth;
 using CleanArchitecture.Application.Common.Persistence;
+using CleanArchitecture.Domain.Categories;
 using CleanArchitecture.Domain.Common;
+using Mapster;
 
 namespace CleanArchitecture.Persistence.Common;
 
 public class Repository<TEntity> : RepositoryBase<TEntity>, IRepository<TEntity>
-    where TEntity : BaseEntity, IAggregateRoot
+    where TEntity : BaseEntity
 {
     private readonly ApplicationDbContext _dbContext;
     private readonly ICurrentUser _currentUser;
@@ -26,4 +29,10 @@ public class Repository<TEntity> : RepositoryBase<TEntity>, IRepository<TEntity>
 
         await SaveChangesAsync(cancellationToken);
     }
+
+    protected override IQueryable<TResult> ApplySpecification<TResult>(ISpecification<TEntity, TResult> specification) =>
+        specification.Selector is not null
+            ? base.ApplySpecification(specification)
+            : ApplySpecification(specification, false)
+                .ProjectToType<TResult>();
 }

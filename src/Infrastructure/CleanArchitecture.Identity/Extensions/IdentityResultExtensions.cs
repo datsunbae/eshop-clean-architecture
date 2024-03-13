@@ -1,5 +1,4 @@
-﻿using CleanArchitecture.Application.Common.Exceptions;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace CleanArchitecture.Identity.Extensions;
 

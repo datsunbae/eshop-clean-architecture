@@ -1,8 +1,6 @@
 using CleanArchitecture.Application.Identity.Roles;
-using CleanArchitecture.Domain.Constants.Authorization;
 using CleanArchitecture.Identity.Auth.Permissions;
 using Microsoft.AspNetCore.Mvc;
-using Action = CleanArchitecture.Domain.Constants.Authorization.Action;
 
 namespace CleanArchitecture.Api.Controllers.Identity;
 

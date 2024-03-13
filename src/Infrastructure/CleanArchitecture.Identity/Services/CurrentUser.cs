@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Application.Common.Interfaces.Auth;
 using CleanArchitecture.Application.Identity;
+using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
 namespace CleanArchitecture.Identity.Services;
@@ -9,6 +10,8 @@ public class CurrentUser : ICurrentUser, ICurrentUserInitializer
     private ClaimsPrincipal? _user;
 
     public string? Name => _user?.Identity?.Name;
+
+    public string IdentityId => throw new NotImplementedException();
 
     private Guid _userId = Guid.Empty;
 

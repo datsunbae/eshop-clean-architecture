@@ -5,13 +5,10 @@ namespace CleanArchitecture.Domain.Constants.Authorization;
 public static class Action
 {
     public const string View = nameof(View);
-    public const string Search = nameof(Search);
     public const string Create = nameof(Create);
     public const string Update = nameof(Update);
     public const string Delete = nameof(Delete);
     public const string Export = nameof(Export);
-    public const string Generate = nameof(Generate);
-    public const string Clean = nameof(Clean);
 }
 
 public static class Resource
@@ -21,6 +18,7 @@ public static class Resource
     public const string Roles = nameof(Roles);
     public const string RoleClaims = nameof(RoleClaims);
     public const string Products = nameof(Products);
+    public const string Categories = nameof(Categories);
 }
 
 public static class Permissions
@@ -28,7 +26,6 @@ public static class Permissions
     private static readonly Permission[] _all = new Permission[]
     {
         new("View Users", Action.View, Resource.Users),
-        new("Search Users", Action.Search, Resource.Users),
         new("Create Users", Action.Create, Resource.Users),
         new("Update Users", Action.Update, Resource.Users),
         new("Delete Users", Action.Delete, Resource.Users),
@@ -42,11 +39,15 @@ public static class Permissions
         new("View RoleClaims", Action.View, Resource.RoleClaims),
         new("Update RoleClaims", Action.Update, Resource.RoleClaims),
         new("View Products", Action.View, Resource.Products, IsCustomer: true),
-        new("Search Products", Action.Search, Resource.Products, IsCustomer: true),
         new("Create Products", Action.Create, Resource.Products),
         new("Update Products", Action.Update, Resource.Products),
         new("Delete Products", Action.Delete, Resource.Products),
         new("Export Products", Action.Export, Resource.Products),
+        new("View Categories", Action.View, Resource.Products, IsCustomer: true),
+        new("Create Categories", Action.Create, Resource.Categories),
+        new("Update Categories", Action.Update, Resource.Categories),
+        new("Delete Categories", Action.Delete, Resource.Categories),
+        new("Export Categories", Action.Export, Resource.Categories),
     };
 
     public static IReadOnlyList<Permission> Admin { get; } = new ReadOnlyCollection<Permission>(_all);

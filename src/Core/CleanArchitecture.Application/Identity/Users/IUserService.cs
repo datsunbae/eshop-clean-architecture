@@ -1,5 +1,4 @@
 using CleanArchitecture.Application.Identity.Users.Password;
-using System.Security.Claims;
 
 namespace CleanArchitecture.Application.Identity.Users;
 
@@ -23,7 +22,6 @@ public interface IUserService
 
     Task ToggleStatusAsync(ToggleUserStatusRequest request, CancellationToken cancellationToken);
 
-    Task<Guid> GetOrCreateFromPrincipalAsync(ClaimsPrincipal principal);
     Task<string> CreateAsync(CreateUserRequest request, string origin);
     Task UpdateAsync(UpdateUserRequest request, Guid userId);
 

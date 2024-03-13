@@ -42,7 +42,7 @@ public class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions
             RoleClaimType = ClaimTypes.Role,
             ClockSkew = TimeSpan.Zero
         };
-        options.Events = new JwtBearerEvents
+        options.Events = new TokenValidatedJwtBearerEvents
         {
             OnChallenge = context =>
             {
@@ -57,10 +57,9 @@ public class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions
             OnForbidden = _ => throw new ForbiddenException("You are not authorized to access this resource."),
             OnMessageReceived = context =>
             {
-                var accessToken = context.Request.Query["access_token"];
+                var accessToken = context.Request.Headers["Authorization"].FirstOrDefault();
 
-                if (!string.IsNullOrEmpty(accessToken) &&
-                    context.HttpContext.Request.Path.StartsWithSegments("/notifications"))
+                if (!string.IsNullOrEmpty(accessToken))
                 {
                     // Read the token out of the query string
                     context.Token = accessToken;

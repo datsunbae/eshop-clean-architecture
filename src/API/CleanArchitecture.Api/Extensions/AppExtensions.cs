@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Api.Middlewares;
-using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace CleanArchitecture.Api.Extensions;
 

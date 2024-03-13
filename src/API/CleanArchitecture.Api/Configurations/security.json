@@ -1,14 +1,14 @@
 {
   "SecuritySettings": {
     "JwtSettings": {
-      "key": "S0M3RAN0MS3CR3T!1!MAG1C!1!",
+      "key": "S0M3RAN0MS3CR3T!1!MAG1C!1!KODOKU!@!@!@!@!@!@",
       "tokenExpirationInMinutes": 60,
       "refreshTokenExpirationInDays": 7
     },
     "AdminSettings": {
       "email": "datsunbae@gmail.com",
       "userName": "admin",
-      "password": "admin123",
+      "password": "Admin12345678@",
       "firstName": "Admin",
       "lastName":  "Kodoku"
     }

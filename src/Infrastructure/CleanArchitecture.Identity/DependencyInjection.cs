@@ -18,6 +18,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Microsoft.Identity.Web;
 
 namespace CleanArchitecture.Identity;
 
@@ -37,12 +38,12 @@ public static class DependencyInjection
             .AddIdentity(configuration)
             .AddCurrentUser()
             .AddPermissions()
-            .AddJwtAuth();
+            .AddJwtAuth(configuration);
 
         return services;
     }
 
-    public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder builder) =>
+    public static IApplicationBuilder UseInfrastructureIndentity(this IApplicationBuilder builder) =>
         builder
             .UseCurrentUser();
 
@@ -65,8 +66,10 @@ public static class DependencyInjection
                 .AddEntityFrameworkStores<ApplicationIdentityDbContext>()
                 .AddDefaultTokenProviders();
 
-        services.AddDbContext < ApplicationIdentityDbContext>(options =>
+        services.AddDbContext<ApplicationIdentityDbContext>(options =>
                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddHttpContextAccessor();
 
         return services;
     }
@@ -82,7 +85,7 @@ public static class DependencyInjection
             .AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>()
             .AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
 
-    private static IServiceCollection AddJwtAuth(this IServiceCollection services)
+    private static IServiceCollection AddJwtAuth(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddOptions<JwtSettings>()
             .BindConfiguration($"SecuritySettings:{nameof(JwtSettings)}")
@@ -90,6 +93,8 @@ public static class DependencyInjection
             .ValidateOnStart();
 
         services.AddSingleton<IConfigureOptions<JwtBearerOptions>, ConfigureJwtBearerOptions>();
+
+        services.AddTransient<TokenValidatedJwtBearerEvents>();
 
         services
             .AddAuthentication(authentication =>

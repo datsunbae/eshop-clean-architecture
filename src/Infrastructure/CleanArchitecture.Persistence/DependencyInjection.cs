@@ -1,5 +1,7 @@
-﻿using CleanArchitecture.Application.Common.Persistence;
+﻿using Ardalis.Specification;
+using CleanArchitecture.Application.Common.Persistence;
 using CleanArchitecture.Application.Common.Persistence.Repositories;
+using CleanArchitecture.Domain.Common;
 using CleanArchitecture.Persistence.Common;
 using CleanArchitecture.Persistence.Outbox;
 using CleanArchitecture.Persistence.Repositories;
