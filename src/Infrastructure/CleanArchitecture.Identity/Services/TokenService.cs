@@ -1,9 +1,11 @@
 using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Identity;
-using CleanArchitecture.Application.Identity.Tokens;
+using CleanArchitecture.Application.Features.Identities;
+using CleanArchitecture.Application.Features.Identities.Roles;
+using CleanArchitecture.Application.Features.Identities.Tokens;
 using CleanArchitecture.Domain.Constants.Authorization;
 using CleanArchitecture.Identity.Auth.Jwt;
 using CleanArchitecture.Identity.Entities;
+using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -29,6 +31,8 @@ internal class TokenService : ITokenService
 
     public async Task<TokenResponse> GetTokenAsync(TokenRequest request, string ipAddress, CancellationToken cancellationToken)
     {
+        new TokenRequestValidator().ValidateAndThrow(request);
+
         if (await _userManager.FindByEmailAsync(request.Email.Trim().Normalize()) is not { } user
             || !await _userManager.CheckPasswordAsync(user, request.Password))
         {

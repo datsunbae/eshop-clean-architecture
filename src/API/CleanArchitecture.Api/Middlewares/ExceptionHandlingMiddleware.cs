@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Domain.Constants.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.Api.Middlewares;
@@ -67,6 +66,13 @@ internal sealed class ExceptionHandlingMiddleware
                 "Validation error",
                 "One or more validation errors has occurred",
                 validationException.Errors),
+
+            FluentValidation.ValidationException fluentException => new ExceptionDetails(
+                StatusCodes.Status400BadRequest,
+                "ValidationFailure",
+                "Validation error",
+                "One or more validation errors has occurred",
+                fluentException?.Errors?.Select(x => x.ErrorMessage) ?? Enumerable.Empty<string>()),
 
             _ => new ExceptionDetails(
                 StatusCodes.Status500InternalServerError,

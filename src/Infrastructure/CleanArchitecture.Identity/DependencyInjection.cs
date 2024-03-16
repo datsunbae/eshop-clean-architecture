@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Application.Common.Interfaces.Auth;
-using CleanArchitecture.Application.Identity.Roles;
-using CleanArchitecture.Application.Identity.Tokens;
-using CleanArchitecture.Application.Identity.Users;
+using CleanArchitecture.Application.Features.Identities.Roles;
+using CleanArchitecture.Application.Features.Identities.Tokens;
+using CleanArchitecture.Application.Features.Identities.Users;
 using CleanArchitecture.Identity.Auth;
 using CleanArchitecture.Identity.Auth.Jwt;
 using CleanArchitecture.Identity.Auth.Permissions;

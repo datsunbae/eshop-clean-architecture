@@ -3,15 +3,13 @@ using CleanArchitecture.Application.Common.Email;
 using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Common.FileStorage;
 using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Identity.Users;
-using CleanArchitecture.Application.Identity.Users.Password;
+using CleanArchitecture.Application.Features.Identities.Users;
 using CleanArchitecture.Domain.Constants.Authorization;
 using CleanArchitecture.Identity.DatabaseContext;
 using CleanArchitecture.Identity.Entities;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
 
 namespace CleanArchitecture.Identity.Services;
 

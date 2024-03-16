@@ -1,4 +1,4 @@
-namespace CleanArchitecture.Application.Identity.Roles;
+namespace CleanArchitecture.Application.Features.Identities.Roles;
 
 public interface IRoleService
 {

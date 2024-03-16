@@ -1,4 +1,4 @@
-namespace CleanArchitecture.Application.Identity.Tokens;
+namespace CleanArchitecture.Application.Features.Identities.Tokens;
 
 public interface ITokenService
 {

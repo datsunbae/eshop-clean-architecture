@@ -1,4 +1,4 @@
-namespace CleanArchitecture.Application.Identity.Users.Password;
+namespace CleanArchitecture.Application.Features.Identities.Users.Password;
 
 public class ResetPasswordRequest
 {

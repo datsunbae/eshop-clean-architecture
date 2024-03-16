@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace CleanArchitecture.Application.Identity.Users;
+namespace CleanArchitecture.Application.Features.Identities.Users;
 
 public class CreateUserRequestValidator : AbstractValidator<CreateUserRequest>
 {

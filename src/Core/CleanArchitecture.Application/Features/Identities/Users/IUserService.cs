@@ -1,6 +1,6 @@
-using CleanArchitecture.Application.Identity.Users.Password;
+using CleanArchitecture.Application.Features.Identities.Users.Password;
 
-namespace CleanArchitecture.Application.Identity.Users;
+namespace CleanArchitecture.Application.Features.Identities.Users;
 
 public interface IUserService
 {

@@ -1,11 +1,12 @@
 using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Common.Interfaces.Auth;
 using CleanArchitecture.Application.Common.Messaging;
-using CleanArchitecture.Application.Identity.Roles;
+using CleanArchitecture.Application.Features.Identities.Roles;
 using CleanArchitecture.Domain.Constants.Authorization;
 using CleanArchitecture.Identity.DatabaseContext;
 using CleanArchitecture.Identity.Entities;
 using CleanArchitecture.Identity.Extensions;
+using FluentValidation;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -62,6 +63,9 @@ internal class RoleService : IRoleService
 
     public async Task<string> CreateOrUpdateAsync(CreateOrUpdateRoleRequest request)
     {
+        await new CreateOrUpdateRoleRequestValidator(this)
+            .ValidateAndThrowAsync(request);
+
         if (string.IsNullOrEmpty(request.Id?.ToString()))
         {
             // Create a new role.
@@ -103,6 +107,9 @@ internal class RoleService : IRoleService
 
     public async Task<string> UpdatePermissionsAsync(UpdateRolePermissionsRequest request, CancellationToken cancellationToken)
     {
+        new UpdateRolePermissionsRequestValidator()
+            .ValidateAndThrow(request);
+
         var role = await _roleManager.FindByIdAsync(request.RoleId.ToString());
         _ = role ?? throw new NotFoundException("Role Not Found");
         if (role.Name == Roles.Admin)

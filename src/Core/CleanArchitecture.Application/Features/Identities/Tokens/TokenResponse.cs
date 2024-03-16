@@ -1,3 +1,3 @@
-namespace CleanArchitecture.Application.Identity.Tokens;
+namespace CleanArchitecture.Application.Features.Identities.Tokens;
 
 public record TokenResponse(string Token, string RefreshToken, DateTime RefreshTokenExpiryTime);

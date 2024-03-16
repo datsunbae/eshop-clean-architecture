@@ -1,7 +1,6 @@
 using CleanArchitecture.Application.Common.Messaging;
-using MediatR;
 
-namespace CleanArchitecture.Application.Identity.Users;
+namespace CleanArchitecture.Application.Features.Identities.Users;
 
 public class CreateUserRequest
 {

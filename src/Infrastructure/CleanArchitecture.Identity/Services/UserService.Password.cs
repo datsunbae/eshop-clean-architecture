@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Application.Common.Email;
 using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Identity.Users.Password;
+using CleanArchitecture.Application.Features.Identities.Users.Password;
 using CleanArchitecture.Identity.Extensions;
 using Microsoft.AspNetCore.WebUtilities;
 

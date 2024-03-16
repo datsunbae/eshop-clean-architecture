@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace CleanArchitecture.Application.Identity.Tokens;
+namespace CleanArchitecture.Application.Features.Identities.Tokens;
 
 public record TokenRequest(string Email, string Password);
 

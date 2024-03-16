@@ -1,5 +1,5 @@
 ﻿using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Identity.Users;
+using CleanArchitecture.Application.Features.Identities.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.Identity.Services;

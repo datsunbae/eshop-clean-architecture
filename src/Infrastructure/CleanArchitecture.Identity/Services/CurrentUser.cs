@@ -1,5 +1,5 @@
 ﻿using CleanArchitecture.Application.Common.Interfaces.Auth;
-using CleanArchitecture.Application.Identity;
+using CleanArchitecture.Application.Features.Identities;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 

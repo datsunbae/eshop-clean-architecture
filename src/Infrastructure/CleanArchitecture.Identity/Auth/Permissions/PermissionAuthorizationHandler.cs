@@ -1,5 +1,5 @@
-using CleanArchitecture.Application.Identity;
-using CleanArchitecture.Application.Identity.Users;
+using CleanArchitecture.Application.Features.Identities;
+using CleanArchitecture.Application.Features.Identities.Users;
 using Microsoft.AspNetCore.Authorization;
 
 namespace CleanArchitecture.Identity.Auth.Permissions;

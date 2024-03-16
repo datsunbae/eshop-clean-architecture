@@ -1,6 +1,6 @@
 using CleanArchitecture.Application.Common.FileStorage;
 
-namespace CleanArchitecture.Application.Identity.Users;
+namespace CleanArchitecture.Application.Features.Identities.Users;
 
 public record UpdateUserRequest
 {

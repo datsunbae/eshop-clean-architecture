@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace CleanArchitecture.Application.Identity.Roles;
+namespace CleanArchitecture.Application.Features.Identities.Roles;
 
 public class CreateOrUpdateRoleRequest
 {

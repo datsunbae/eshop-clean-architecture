@@ -1,4 +1,4 @@
-using CleanArchitecture.Application.Identity.Tokens;
+using CleanArchitecture.Application.Features.Identities.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

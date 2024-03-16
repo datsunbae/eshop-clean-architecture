@@ -1,4 +1,4 @@
-namespace CleanArchitecture.Application.Identity.Users;
+namespace CleanArchitecture.Application.Features.Identities.Users;
 
 public class UserRolesRequest
 {

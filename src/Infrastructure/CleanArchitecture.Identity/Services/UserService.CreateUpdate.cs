@@ -1,16 +1,14 @@
 ﻿using CleanArchitecture.Application.Common.Email;
 using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Identity;
-using CleanArchitecture.Application.Identity.Users;
+using CleanArchitecture.Application.Features.Identities.Roles;
+using CleanArchitecture.Application.Features.Identities.Tokens;
+using CleanArchitecture.Application.Features.Identities.Users;
 using CleanArchitecture.Domain.Common;
 using CleanArchitecture.Domain.Constants.Authorization;
 using CleanArchitecture.Identity.Entities;
 using CleanArchitecture.Identity.Extensions;
 using CleanArchitecture.Identity.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Web;
-using System.Security.Claims;
+using FluentValidation;
 
 namespace CleanArchitecture.Identity.Services;
 
@@ -18,6 +16,9 @@ internal partial class UserService
 {
     public async Task<string> CreateAsync(CreateUserRequest request, string origin)
     {
+        await new CreateUserRequestValidator(this)
+            .ValidateAndThrowAsync(request);
+
         var user = new ApplicationUser
         {
             Email = request.Email,
@@ -61,6 +62,9 @@ internal partial class UserService
 
     public async Task UpdateAsync(UpdateUserRequest request, Guid userId)
     {
+        await new UpdateUserRequestValidator(this)
+            .ValidateAndThrowAsync(request);
+
         var user = await _userManager.FindByIdAsync(userId.ToString());
 
         _ = user ?? throw new NotFoundException("User Not Found.");

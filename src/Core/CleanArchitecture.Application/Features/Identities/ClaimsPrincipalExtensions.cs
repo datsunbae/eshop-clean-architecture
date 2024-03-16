@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Domain.Constants.Authorization;
 using System.Security.Claims;
 
-namespace CleanArchitecture.Application.Identity;
+namespace CleanArchitecture.Application.Features.Identities;
 
 public static class ClaimsPrincipalExtensions
 {
