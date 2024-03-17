@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CleanArchitecture.Application.Common.Messaging;
 
-namespace CleanArchitecture.Application.Features.V1.Categories.Commands.UpdateCategory
+namespace CleanArchitecture.Application.Features.V1.Categories.Commands.UpdateCategory;
+
+public sealed record UpdateCategoryCommand(Guid Id, string Name) 
+    : ICommand<Guid>
 {
-    internal class UpdateCategoryCommand
-    {
-    }
 }

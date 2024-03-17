@@ -1,6 +1,11 @@
 ﻿using Asp.Versioning;
 using CleanArchitecture.Application.Common.Models;
+using CleanArchitecture.Application.Features.V1.Categories;
+using CleanArchitecture.Application.Features.V1.Categories.Commands.CreateCategory;
+using CleanArchitecture.Application.Features.V1.Categories.Commands.DeleteCategory;
+using CleanArchitecture.Application.Features.V1.Categories.Commands.UpdateCategory;
 using CleanArchitecture.Application.Features.V1.Categories.Queries.GetCategories;
+using CleanArchitecture.Application.Features.V1.Categories.Queries.GetCategoryById;
 using CleanArchitecture.Domain.Common;
 using CleanArchitecture.Identity.Auth.Permissions;
 using MediatR;
@@ -15,12 +20,78 @@ public class CategoryController : BaseApiController
     {
     }
 
-    [HttpPost("categories-paged")]
-    [ProducesResponseType(typeof(Result<IReadOnlyList<CategoryResponse>>), StatusCodes.Status200OK)]
+    /// <summary>
+    /// Get the paginated category list
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    [HttpPost("paginated")]
+    [ProducesResponseType(typeof(Result<PaginationResponse<CategoryResponse>>), StatusCodes.Status200OK)]
     [MustHavePermission(Action.View, Resource.Categories)]
-    public async Task<ActionResult<PaginationResponse<CategoryResponse>>> GetCategorisPaged([FromBody] GetCategoriesQuery request)
+    public async Task<IActionResult> GetCategorisPaged([FromBody] GetCategoriesQuery request)
     {
         var result = await Sender.Send(request);
         return Ok(result);
+    }
+
+    /// <summary>
+    /// Get category by id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    [HttpGet("{id:guid}")]
+    [ProducesResponseType(typeof(Result<CategoryResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [MustHavePermission(Action.View, Resource.Categories)]
+    public async Task<IActionResult> GetCategoryById(Guid id)
+    {
+        var result = await Sender.Send(new GetCategoryByIdQuery(id));
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Create category
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    [HttpPost]
+    [ProducesResponseType(typeof(Result<CategoryResponse>), StatusCodes.Status200OK)]
+    [MustHavePermission(Action.Create, Resource.Categories)]
+    public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryCommand request)
+    {
+        var result = await Sender.Send(request);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Update category
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    [HttpPut("{id:guid}")]
+    [ProducesResponseType(typeof(Result<CategoryResponse>), StatusCodes.Status200OK)]
+    [MustHavePermission(Action.Update, Resource.Categories)]
+    public async Task<IActionResult> UpdateCategory(Guid id, [FromBody] UpdateCategoryCommand request)
+    {
+        if(request.Id != id)
+            return BadRequest();
+
+        var result = await Sender.Send(request);
+
+        return CreatedAtAction(nameof(GetCategoryById), new { id = result.Value }, result.Value);
+    }
+
+    /// <summary>
+    /// Delete category
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    [HttpDelete("{id:guid}")]
+    [ProducesResponseType(typeof(Result<Guid>), StatusCodes.Status200OK)]
+    [MustHavePermission(Action.Delete, Resource.Categories)]
+    public async Task<IActionResult> DeleteCategory(Guid id)
+    {
+        return Ok(await Sender.Send(new DeleteCategoryCommand(id)));
     }
 }

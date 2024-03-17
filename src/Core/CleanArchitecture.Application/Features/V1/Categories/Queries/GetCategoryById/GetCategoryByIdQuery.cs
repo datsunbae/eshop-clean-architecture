@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CleanArchitecture.Application.Common.Messaging;
 
-namespace CleanArchitecture.Application.Features.V1.Categories.Queries.GetCategoryById
-{
-    internal class GetCategoryByIdQuery
-    {
-    }
-}
+namespace CleanArchitecture.Application.Features.V1.Categories.Queries.GetCategoryById;
+
+public sealed record GetCategoryByIdQuery(Guid Id) 
+    : IQuery<CategoryResponse>;

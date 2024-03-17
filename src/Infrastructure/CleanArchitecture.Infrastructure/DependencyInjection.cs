@@ -90,6 +90,8 @@ public static class DependencyInjection
 
     private static IServiceCollection AddCaching(this IServiceCollection services, IConfiguration config)
     {
+        services.AddScoped<ICacheKeyService, CacheKeyService>();
+
         var settings = config.GetSection(nameof(CacheSettings)).Get<CacheSettings>();
         if (settings == null) return services;
         if (settings.UseDistributedCache)

@@ -1,12 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CleanArchitecture.Application.Common.Messaging;
+using CleanArchitecture.Application.Common.Persistence.Repositories;
+using CleanArchitecture.Domain.Categories;
+using CleanArchitecture.Domain.Common;
 
-namespace CleanArchitecture.Application.Features.V1.Categories.Commands.DeleteCategory
+namespace CleanArchitecture.Application.Features.V1.Categories.Commands.DeleteCategory;
+
+public class DeleteCategoryCommandHandler : ICommandHandler<DeleteCategoryCommand, Guid>
 {
-    internal class DeleteCategoryCommandHandler
+    private readonly ICategoryRepository _categoryRepository;
+    public DeleteCategoryCommandHandler(ICategoryRepository categoryRepository)
     {
+        _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));   
+    }
+
+    public async Task<Result<Guid>> Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
+    {
+        var category = await _categoryRepository.GetByIdAsync(request.Id);
+        if (category is null)
+            return Result.Failure<Guid>(CategoryErrors.NotFound);
+
+        await _categoryRepository.SoftDeleteAsync(category);
+
+        return category.Id;
     }
 }

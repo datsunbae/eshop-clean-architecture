@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CleanArchitecture.Application.Common.Messaging;
 
-namespace CleanArchitecture.Application.Features.V1.Categories.Commands.CreateCategory
-{
-    internal class CreateCategoryCommand
-    {
-    }
-}
+namespace CleanArchitecture.Application.Features.V1.Categories.Commands.CreateCategory;
+
+public sealed record CreateCategoryCommand(string Name)
+    : ICommand<CategoryResponse>;

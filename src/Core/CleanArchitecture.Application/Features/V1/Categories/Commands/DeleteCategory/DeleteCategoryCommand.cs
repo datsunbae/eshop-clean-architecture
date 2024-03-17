@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CleanArchitecture.Application.Common.Messaging;
 
-namespace CleanArchitecture.Application.Features.V1.Categories.Commands.DeleteCategory
+namespace CleanArchitecture.Application.Features.V1.Categories.Commands.DeleteCategory;
+
+public sealed record DeleteCategoryCommand(Guid Id) 
+    : ICommand<Guid>
 {
-    internal class DeleteCategoryCommand
-    {
-    }
 }
