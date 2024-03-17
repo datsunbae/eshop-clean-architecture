@@ -4,6 +4,7 @@ using CleanArchitecture.Application.Common.Persistence;
 using CleanArchitecture.Domain.Categories;
 using CleanArchitecture.Domain.Common;
 using CleanArchitecture.Domain.Products;
+using CleanArchitecture.Persistence.Extentions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Reflection;
@@ -24,8 +25,12 @@ public sealed class ApplicationDbContext : DbContext, IUnitOfWork
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        // QueryFilters need to be applied before base.OnModelCreating
+        builder.AppendGlobalQueryFilter<ISoftDelete>(s => s.DeletedOn == null);
+
         base.OnModelCreating(builder);
+
+        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

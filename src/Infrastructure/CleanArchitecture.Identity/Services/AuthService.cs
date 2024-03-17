@@ -1,7 +1,6 @@
 using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Features.Identities;
-using CleanArchitecture.Application.Features.Identities.Roles;
-using CleanArchitecture.Application.Features.Identities.Tokens;
+using CleanArchitecture.Application.Features.Identities.Authentication;
 using CleanArchitecture.Domain.Constants.Authorization;
 using CleanArchitecture.Identity.Auth.Jwt;
 using CleanArchitecture.Identity.Entities;
@@ -16,12 +15,12 @@ using System.Text;
 
 namespace CleanArchitecture.Identity.Services;
 
-internal class TokenService : ITokenService
+internal class AuthService : IAuthService
 {
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly JwtSettings _jwtSettings;
 
-    public TokenService(
+    public AuthService(
         UserManager<ApplicationUser> userManager,
         IOptions<JwtSettings> jwtSettings)
     {
@@ -29,7 +28,7 @@ internal class TokenService : ITokenService
         _jwtSettings = jwtSettings.Value;
     }
 
-    public async Task<TokenResponse> GetTokenAsync(TokenRequest request, string ipAddress, CancellationToken cancellationToken)
+    public async Task<LoginResponse> GetTokenAsync(LoginRequest request, string ipAddress, CancellationToken cancellationToken)
     {
         new TokenRequestValidator().ValidateAndThrow(request);
 
@@ -52,7 +51,7 @@ internal class TokenService : ITokenService
         return await GenerateTokensAndUpdateUser(user, ipAddress);
     }
 
-    public async Task<TokenResponse> RefreshTokenAsync(RefreshTokenRequest request, string ipAddress)
+    public async Task<LoginResponse> RefreshTokenAsync(RefreshTokenRequest request, string ipAddress)
     {
         var userPrincipal = GetPrincipalFromExpiredToken(request.Token);
         string? userEmail = userPrincipal.GetEmail();
@@ -70,7 +69,7 @@ internal class TokenService : ITokenService
         return await GenerateTokensAndUpdateUser(user, ipAddress);
     }
 
-    private async Task<TokenResponse> GenerateTokensAndUpdateUser(ApplicationUser user, string ipAddress)
+    private async Task<LoginResponse> GenerateTokensAndUpdateUser(ApplicationUser user, string ipAddress)
     {
         string token = GenerateJwt(user, ipAddress);
 
@@ -79,7 +78,7 @@ internal class TokenService : ITokenService
 
         await _userManager.UpdateAsync(user);
 
-        return new TokenResponse(token, user.RefreshToken, user.RefreshTokenExpiryTime);
+        return new LoginResponse(token, user.RefreshToken, user.RefreshTokenExpiryTime);
     }
 
     private string GenerateJwt(ApplicationUser user, string ipAddress) =>

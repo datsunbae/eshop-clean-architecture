@@ -1,4 +1,4 @@
-using CleanArchitecture.Application.Features.Identities.Tokens;
+using CleanArchitecture.Application.Features.Identities.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,20 +8,20 @@ namespace CleanArchitecture.Api.Controllers.Identity;
 [Route("api/[controller]")]
 public sealed class TokensController : ControllerBase
 {
-    private readonly ITokenService _tokenService;
+    private readonly IAuthService _tokenService;
 
-    public TokensController(ITokenService tokenService) => _tokenService = tokenService;
+    public TokensController(IAuthService tokenService) => _tokenService = tokenService;
 
     [HttpPost]
     [AllowAnonymous]
-    public Task<TokenResponse> GetTokenAsync(TokenRequest request, CancellationToken cancellationToken)
+    public Task<LoginResponse> GetTokenAsync(LoginRequest request, CancellationToken cancellationToken)
     {
         return _tokenService.GetTokenAsync(request, GetIpAddress()!, cancellationToken);
     }
 
     [HttpPost("refresh")]
     [AllowAnonymous]
-    public Task<TokenResponse> RefreshAsync(RefreshTokenRequest request)
+    public Task<LoginResponse> RefreshAsync(RefreshTokenRequest request)
     {
         return _tokenService.RefreshTokenAsync(request, GetIpAddress()!);
     }

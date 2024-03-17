@@ -19,6 +19,7 @@ public interface IUserService
 
     Task<List<string>> GetPermissionsAsync(Guid userId, CancellationToken cancellationToken);
     Task<bool> HasPermissionAsync(Guid userId, string permission, CancellationToken cancellationToken = default);
+    Task InvalidatePermissionCacheAsync(Guid userId, CancellationToken cancellationToken);
 
     Task ToggleStatusAsync(ToggleUserStatusRequest request, CancellationToken cancellationToken);
 

@@ -18,7 +18,6 @@ internal class TokenValidatedJwtBearerEvents : JwtBearerEvents
     /// <returns>A task.</returns>
     public override async Task TokenValidated(TokenValidatedContext context)
     {
-        Guid userId = Guid.Empty;
         var principal = context.Principal;
 
         if (principal is null)
@@ -26,13 +25,12 @@ internal class TokenValidatedJwtBearerEvents : JwtBearerEvents
             throw new UnauthorizedException("Authentication Failed.");
         }
 
+        var userId = principal.GetUserId();
+
         // The caller comes from an admin-consented, recorded issuer.
         var identity = principal.Identities.First();
 
-        // Lookup local user or create one if none exist.
-        _ = Guid.TryParse(principal.GetUserId(), out userId);
-
-        if(userId == Guid.Empty)
+        if(userId == string.Empty || userId is null)
             throw new UnauthorizedException("Authentication Failed.");
 
         // We use the nameidentifier claim to store the user id.

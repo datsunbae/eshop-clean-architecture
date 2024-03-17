@@ -5,9 +5,11 @@ using CleanArchitecture.Application.Features.Identities.Roles;
 using CleanArchitecture.Domain.Constants.Authorization;
 using CleanArchitecture.Identity.DatabaseContext;
 using CleanArchitecture.Identity.Entities;
+using CleanArchitecture.Identity.Events;
 using CleanArchitecture.Identity.Extensions;
 using FluentValidation;
 using Mapster;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,17 +21,20 @@ internal class RoleService : IRoleService
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly ApplicationIdentityDbContext _db;
     private readonly ICurrentUser _currentUser;
+    private readonly IPublisher _mediator;
 
     public RoleService(
         RoleManager<ApplicationRole> roleManager,
         UserManager<ApplicationUser> userManager,
         ApplicationIdentityDbContext db,
-        ICurrentUser currentUser)
+        ICurrentUser currentUser,
+        IPublisher mediator)
     {
         _roleManager = roleManager;
         _userManager = userManager;
         _db = db;
         _currentUser = currentUser;
+        _mediator = mediator;
     }
 
     public async Task<List<RoleResponse>> GetListAsync(CancellationToken cancellationToken) =>
@@ -101,6 +106,8 @@ internal class RoleService : IRoleService
                 throw new InternalServerException("Update role failed", result.GetErrors());
             }
 
+            await _mediator.Publish(new ApplicationRoleUpdatedEvent(role.Id, role.Name));
+
             return string.Format("Role {0} Updated.", role.Name);
         }
     }
@@ -144,6 +151,8 @@ internal class RoleService : IRoleService
                 await _db.SaveChangesAsync(cancellationToken);
             }
         }
+
+        await _mediator.Publish(new ApplicationRoleUpdatedEvent(role.Id, role.Name!, true));
 
         return "Permissions Updated.";
     }

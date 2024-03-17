@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Application.Common.Interfaces.Auth;
+using CleanArchitecture.Application.Features.Identities.Authentication;
 using CleanArchitecture.Application.Features.Identities.Roles;
-using CleanArchitecture.Application.Features.Identities.Tokens;
 using CleanArchitecture.Application.Features.Identities.Users;
 using CleanArchitecture.Identity.Auth;
 using CleanArchitecture.Identity.Auth.Jwt;
@@ -18,7 +18,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Microsoft.Identity.Web;
 
 namespace CleanArchitecture.Identity;
 
@@ -28,7 +27,8 @@ public static class DependencyInjection
     {
         services.AddTransient<ApplicationDbInitializer>();
         services.AddTransient<ApplicationDbSeeder>();
-        services.AddScoped<ITokenService, TokenService>();
+
+        services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IRoleService, RoleService>();
 
@@ -46,7 +46,6 @@ public static class DependencyInjection
     public static IApplicationBuilder UseInfrastructureIndentity(this IApplicationBuilder builder) =>
         builder
             .UseCurrentUser();
-
 
     public static async Task InitializeDatabasesAsync(this IServiceProvider services, CancellationToken cancellationToken = default)
     {

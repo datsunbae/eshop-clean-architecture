@@ -1,11 +1,10 @@
 ﻿using CleanArchitecture.Application.Common.Email;
 using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Features.Identities.Roles;
-using CleanArchitecture.Application.Features.Identities.Tokens;
 using CleanArchitecture.Application.Features.Identities.Users;
 using CleanArchitecture.Domain.Common;
 using CleanArchitecture.Domain.Constants.Authorization;
 using CleanArchitecture.Identity.Entities;
+using CleanArchitecture.Identity.Events;
 using CleanArchitecture.Identity.Extensions;
 using CleanArchitecture.Identity.Models;
 using FluentValidation;
@@ -92,6 +91,8 @@ internal partial class UserService
         var result = await _userManager.UpdateAsync(user);
 
         await _signInManager.RefreshSignInAsync(user);
+
+        await _mediator.Publish(new ApplicationUserUpdatedEvent(user.Id));
 
         if (!result.Succeeded)
         {

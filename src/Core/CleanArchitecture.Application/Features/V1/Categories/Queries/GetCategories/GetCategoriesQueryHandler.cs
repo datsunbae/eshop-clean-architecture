@@ -10,17 +10,24 @@ namespace CleanArchitecture.Application.Features.V1.Categories.Queries.GetCatego
 public sealed class GetCategoriesQueryHandler : IQueryHandler<GetCategoriesQuery, PaginationResponse<CategoryResponse>>
 {
     private readonly ICategoryRepository _categoryRepository;
+
     public GetCategoriesQueryHandler(ICategoryRepository categoryRepository)
     {
         _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));   
     }
 
-    public async Task<Result<PaginationResponse<CategoryResponse>>> Handle(GetCategoriesQuery request, CancellationToken cancellationToken)
+    public async Task<Result<PaginationResponse<CategoryResponse>>> Handle(
+        GetCategoriesQuery request, 
+        CancellationToken cancellationToken)
     {
         var spec = new CategoriesSpec(request);
+        var result = await _categoryRepository
+            .PaginatedListAsync(
+                spec, 
+                request.PageNumber, 
+                request.PageSize, 
+                cancellationToken);
 
-        var result = await _categoryRepository.PaginatedListAsync(spec, request.PageNumber, request.PageSize, cancellationToken);
-
-        return null;
+        return result;
     }
 }

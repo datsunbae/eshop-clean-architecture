@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Features.Identities.Users;
+using CleanArchitecture.Identity.Events;
 using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.Identity.Services;
@@ -54,6 +55,8 @@ internal partial class UserService
                 }
             }
         }
+
+        await _mediator.Publish(new ApplicationUserUpdatedEvent(user.Id, true));
 
         return "User Roles Updated Successfully.";
     }

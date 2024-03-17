@@ -7,7 +7,9 @@ using CleanArchitecture.Application.Features.Identities.Users;
 using CleanArchitecture.Domain.Constants.Authorization;
 using CleanArchitecture.Identity.DatabaseContext;
 using CleanArchitecture.Identity.Entities;
+using CleanArchitecture.Identity.Events;
 using Mapster;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,10 +22,12 @@ internal partial class UserService : IUserService
     private readonly RoleManager<ApplicationRole> _roleManager;
     private readonly ApplicationIdentityDbContext _db;
     private readonly ICacheService _cache;
+    private readonly ICacheKeyService _cacheKeys;
     private readonly IJobService _jobService;
     private readonly IMailService _mailService;
     private readonly IFileStorageService _fileStorage;
     private readonly IEmailTemplateService _templateService;
+    private readonly IPublisher _mediator;
 
     public UserService(
         SignInManager<ApplicationUser> signInManager,
@@ -31,20 +35,24 @@ internal partial class UserService : IUserService
         RoleManager<ApplicationRole> roleManager,
         ApplicationIdentityDbContext db,
         ICacheService cache,
+        ICacheKeyService cacheKeys,
         IJobService jobService,
         IMailService mailService,
         IFileStorageService fileStorageService,
-        IEmailTemplateService templateService)
+        IEmailTemplateService templateService,
+        IPublisher mediator)
     {
         _signInManager = signInManager;
         _userManager = userManager;
         _roleManager = roleManager;
         _db = db;
         _cache = cache;
+        _cacheKeys = cacheKeys;
         _jobService = jobService;
         _mailService = mailService;
         _fileStorage = fileStorageService;
         _templateService = templateService;
+        _mediator = mediator;
     }
 
     public async Task<bool> ExistsWithNameAsync(string name)
@@ -98,5 +106,7 @@ internal partial class UserService : IUserService
         user.IsActive = request.IsActivateUser;
 
         await _userManager.UpdateAsync(user);
+
+        await _mediator.Publish(new ApplicationUserUpdatedEvent(user.Id));
     }
 }

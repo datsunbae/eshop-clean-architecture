@@ -1,10 +1,10 @@
 using FluentValidation;
 
-namespace CleanArchitecture.Application.Features.Identities.Tokens;
+namespace CleanArchitecture.Application.Features.Identities.Authentication;
 
-public record TokenRequest(string Email, string Password);
+public record LoginRequest(string Email, string Password);
 
-public class TokenRequestValidator : AbstractValidator<TokenRequest>
+public class TokenRequestValidator : AbstractValidator<LoginRequest>
 {
     public TokenRequestValidator()
     {

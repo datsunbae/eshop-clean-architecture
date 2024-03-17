@@ -4,7 +4,6 @@ using CleanArchitecture.Application.Features.V1.Categories.Queries.GetCategories
 using CleanArchitecture.Domain.Common;
 using CleanArchitecture.Identity.Auth.Permissions;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.Api.Controllers.V1;
@@ -14,15 +13,6 @@ public class CategoryController : BaseApiController
 {
     public CategoryController(ISender sender) : base(sender)
     {
-    }
-
-    [HttpGet]
-    [ProducesResponseType(typeof(Result<IReadOnlyList<CategoryResponse>>), StatusCodes.Status200OK)]
-    //[MustHavePermission(Action.View, Resource.Categories)]
-    public async Task<ActionResult<IReadOnlyList<CategoryResponse>>> GetCategories()
-    {
-        var result =  await Sender.Send(new GetCategoriesQueryV2());
-        return Ok(result);
     }
 
     [HttpPost("categories-paged")]

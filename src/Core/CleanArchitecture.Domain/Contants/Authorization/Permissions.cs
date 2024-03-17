@@ -43,7 +43,7 @@ public static class Permissions
         new("Update Products", Action.Update, Resource.Products),
         new("Delete Products", Action.Delete, Resource.Products),
         new("Export Products", Action.Export, Resource.Products),
-        new("View Categories", Action.View, Resource.Products, IsCustomer: true),
+        new("View Categories", Action.View, Resource.Categories, IsCustomer: true),
         new("Create Categories", Action.Create, Resource.Categories),
         new("Update Categories", Action.Update, Resource.Categories),
         new("Delete Categories", Action.Delete, Resource.Categories),

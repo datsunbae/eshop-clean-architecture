@@ -6,7 +6,5 @@ namespace CleanArchitecture.Application.Features.V1.Categories.Queries.GetCatego
 
 public class CategoriesSpec : EntitiesByPaginationFilterSpec<Category, CategoryResponse>
 {
-    public CategoriesSpec(GetCategoriesQuery filter) : base(filter) =>
-        Query
-            .Where(c => c.DeletedOn == null);
+    public CategoriesSpec(GetCategoriesQuery filter) : base(filter) { }
 }
