@@ -4,7 +4,7 @@
         <name>CleanArchitecture.Api</name>
     </assembly>
     <members>
-        <member name="M:CleanArchitecture.Api.Controllers.V1.CategoryController.GetCategorisPaged(CleanArchitecture.Application.Features.V1.Categories.Queries.GetCategories.GetCategoriesQuery)">
+        <member name="M:CleanArchitecture.Api.Controllers.V1.CategoryController.GetPaginatedCategories(CleanArchitecture.Application.Features.V1.Categories.Queries.GetCategories.GetCategoriesQuery)">
             <summary>
             Get the paginated category list
             </summary>
@@ -39,6 +39,42 @@
             </summary>
             <param name="id"></param>
             <returns></returns>
+        </member>
+        <member name="M:CleanArchitecture.Api.Controllers.V1.ProductController.GetProductPaginated(CleanArchitecture.Application.Features.V1.Products.Queries.GetProducts.GetProductsQuery)">
+            <summary>
+            Get the paginated product list
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CleanArchitecture.Api.Controllers.V1.ProductController.GetProductById(System.Guid)">
+            <summary>
+            Get product by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CleanArchitecture.Api.Controllers.V1.ProductController.CreateProduct(CleanArchitecture.Application.Features.V1.Products.Commands.CreateProduct.CreateProductCommand)">
+            <summary>
+            Create product
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CleanArchitecture.Api.Controllers.V1.ProductController.UpdateProduct(CleanArchitecture.Application.Features.V1.Products.Commands.UpdateProduct.UpdateProductCommand)">
+            <summary>
+            Update product
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CleanArchitecture.Api.Controllers.V1.ProductController.DeleteProduct(System.Guid)">
+            <summary>
+            Delete product
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+            <exception cref="T:CleanArchitecture.Application.Common.Exceptions.BadRequestException"></exception>
         </member>
     </members>
 </doc>

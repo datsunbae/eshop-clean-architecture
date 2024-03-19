@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Application.Common.Exceptions;
+using CleanArchitecture.Application.Common.Interfaces.Auth;
 using CleanArchitecture.Application.Features.Identities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Security.Claims;

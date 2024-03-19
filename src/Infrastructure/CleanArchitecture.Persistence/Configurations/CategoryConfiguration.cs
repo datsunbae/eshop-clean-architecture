@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CleanArchitecture.Domain.Categories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CleanArchitecture.Persistence.Configurations
+namespace CleanArchitecture.Persistence.Configurations;
+
+public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {
-    internal class CategoryConfiguration
+    public void Configure(EntityTypeBuilder<Category> builder)
     {
+        builder.Property(c => c.Name).IsRequired();
     }
 }

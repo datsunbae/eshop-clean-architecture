@@ -1,5 +1,10 @@
-﻿namespace CleanArchitecture.Application.Features.V1.Products.Commands.CreateProduct;
+﻿using CleanArchitecture.Application.Common.Messaging;
 
-public sealed class CreateProductCommand
-{
-}
+namespace CleanArchitecture.Application.Features.V1.Products.Commands.CreateProduct;
+
+public sealed record CreateProductCommand(
+    string Name,
+    string Description,
+    decimal Price,
+    Guid CategoryId)
+    : ICommand<Guid>;

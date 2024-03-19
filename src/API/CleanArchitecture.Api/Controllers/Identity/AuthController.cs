@@ -6,15 +6,15 @@ namespace CleanArchitecture.Api.Controllers.Identity;
 
 [ApiController]
 [Route("api/[controller]")]
-public sealed class TokensController : ControllerBase
+public sealed class AuthController : ControllerBase
 {
     private readonly IAuthService _tokenService;
 
-    public TokensController(IAuthService tokenService) => _tokenService = tokenService;
+    public AuthController(IAuthService tokenService) => _tokenService = tokenService;
 
     [HttpPost]
     [AllowAnonymous]
-    public Task<LoginResponse> GetTokenAsync(LoginRequest request, CancellationToken cancellationToken)
+    public Task<LoginResponse> Login(LoginRequest request, CancellationToken cancellationToken)
     {
         return _tokenService.GetTokenAsync(request, GetIpAddress()!, cancellationToken);
     }

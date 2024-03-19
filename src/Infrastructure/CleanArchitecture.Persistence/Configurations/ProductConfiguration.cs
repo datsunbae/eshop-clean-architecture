@@ -1,12 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CleanArchitecture.Domain.Categories;
+using CleanArchitecture.Domain.Products;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CleanArchitecture.Persistence.Configurations
+namespace CleanArchitecture.Persistence.Configurations;
+
+public class ProductConfiguration : IEntityTypeConfiguration<Product>
 {
-    internal class ProductConfiguration
+    public void Configure(EntityTypeBuilder<Product> builder)
     {
+        builder.Property(p => p.Name)
+            .HasMaxLength(255)
+            .IsRequired();
+
+        builder.HasOne<Category>()
+            .WithMany()
+            .HasForeignKey(p => p.CategoryId);
     }
 }

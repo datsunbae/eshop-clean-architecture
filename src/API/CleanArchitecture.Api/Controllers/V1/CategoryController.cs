@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning;
+using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Common.Models;
 using CleanArchitecture.Application.Features.V1.Categories;
 using CleanArchitecture.Application.Features.V1.Categories.Commands.CreateCategory;
@@ -27,8 +28,7 @@ public class CategoryController : BaseApiController
     /// <returns></returns>
     [HttpPost("paginated")]
     [ProducesResponseType(typeof(Result<PaginationResponse<CategoryResponse>>), StatusCodes.Status200OK)]
-    [MustHavePermission(Action.View, Resource.Categories)]
-    public async Task<IActionResult> GetCategorisPaged([FromBody] GetCategoriesQuery request)
+    public async Task<IActionResult> GetPaginatedCategories([FromBody] GetCategoriesQuery request)
     {
         var result = await Sender.Send(request);
         return Ok(result);
@@ -42,10 +42,15 @@ public class CategoryController : BaseApiController
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(Result<CategoryResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [MustHavePermission(Action.View, Resource.Categories)]
     public async Task<IActionResult> GetCategoryById(Guid id)
     {
-        var result = await Sender.Send(new GetCategoryByIdQuery(id));
+        Result<CategoryResponse> result = await Sender.Send(new GetCategoryByIdQuery(id));
+
+        if(result.IsFailure)
+        {
+            throw new BadRequestException(new List<Error> { result.Error });
+        }
+
         return Ok(result);
     }
 

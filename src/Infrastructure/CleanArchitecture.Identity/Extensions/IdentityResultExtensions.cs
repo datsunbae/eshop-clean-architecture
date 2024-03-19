@@ -1,9 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using CleanArchitecture.Domain.Common;
+using Microsoft.AspNetCore.Identity;
 
 namespace CleanArchitecture.Identity.Extensions;
 
 internal static class IdentityResultExtensions
 {
-    public static List<string> GetErrors(this IdentityResult result) =>
-        result.Errors.Select(e => e.Description).ToList();
+    public static List<Error> GetErrors(this IdentityResult result)
+    {
+        return result.Errors
+            .Select(error => new Error(error.Code, error.Description))
+            .ToList();
+    }
 }

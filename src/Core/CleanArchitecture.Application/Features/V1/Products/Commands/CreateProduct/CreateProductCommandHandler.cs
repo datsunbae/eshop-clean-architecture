@@ -1,12 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CleanArchitecture.Application.Common.Messaging;
+using CleanArchitecture.Application.Common.Persistence.Repositories;
+using CleanArchitecture.Domain.Categories;
+using CleanArchitecture.Domain.Common;
+using CleanArchitecture.Domain.Products;
+using Mapster;
 
-namespace CleanArchitecture.Application.Features.V1.Products.Commands.CreateProduct
+namespace CleanArchitecture.Application.Features.V1.Products.Commands.CreateProduct;
+
+public sealed class CreateProductCommandHandler : ICommandHandler<CreateProductCommand, Guid>
 {
-    internal class CreateProductCommandHandler
+    private readonly IProductRepository _productRepository;
+    private readonly ICategoryRepository _categoryRepository;
+    public CreateProductCommandHandler(IProductRepository productRepository, ICategoryRepository categoryRepository)
     {
+        _productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
+        _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
+    }
+
+    public async Task<Result<Guid>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+    {
+        var category = await _categoryRepository.GetByIdAsync(request.CategoryId);
+        if (category == null)
+            return Result.Failure<Guid>(CategoryErrors.NotFound);
+
+        var product = new Product(
+            Guid.NewGuid(),
+            request.Name,
+            request.Description,
+            request.Price,
+            request.CategoryId);
+
+        var result = await _productRepository.AddAsync(product);
+
+        return result.Id;
     }
 }

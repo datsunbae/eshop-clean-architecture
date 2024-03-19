@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CleanArchitecture.Application.Common.Messaging;
 
-namespace CleanArchitecture.Application.Features.V1.Products.Commands.DeleteProduct
-{
-    internal class DeleteProductCommand
-    {
-    }
-}
+namespace CleanArchitecture.Application.Features.V1.Products.Commands.DeleteProduct;
+
+public sealed record DeleteProductCommand(Guid Id) : ICommand<Guid>;

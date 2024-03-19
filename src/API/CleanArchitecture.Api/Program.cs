@@ -36,17 +36,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerExtension();
 }
 
-app.UseApiApplication();
-app.UseInfrastructure();
-app.UseInfrastructureIndentity();
-
 app.UseRouting();
-
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
+
+app.UseInfrastructureIndentity();
+app.UseApiApplication();
+app.UseInfrastructure();
 
 app.Run();

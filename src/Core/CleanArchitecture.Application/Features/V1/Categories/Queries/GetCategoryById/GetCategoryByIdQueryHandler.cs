@@ -21,6 +21,6 @@ public sealed class GetCategoryByIdQueryHandler : IQueryHandler<GetCategoryByIdQ
         if (category == null)
             return Result.Failure<CategoryResponse>(CategoryErrors.NotFound);
 
-        return category.Adapt<CategoryResponse>();
+        return Result.Success(category.Adapt<CategoryResponse>());
     }
 }

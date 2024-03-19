@@ -36,9 +36,9 @@ public static class DependencyInjection
 
         services
             .AddIdentity(configuration)
+            .AddJwtAuth(configuration)
             .AddCurrentUser()
-            .AddPermissions()
-            .AddJwtAuth(configuration);
+            .AddPermissions();
 
         return services;
     }
@@ -77,7 +77,7 @@ public static class DependencyInjection
         services
             .AddScoped<CurrentUserMiddleware>()
             .AddScoped<ICurrentUser, CurrentUser>()
-            .AddScoped(sp => (ICurrentUserInitializer)sp.GetRequiredService<ICurrentUser>());
+            .AddScoped(sp => (ICurrentUserInitializer) sp.GetRequiredService<ICurrentUser>());
 
     private static IServiceCollection AddPermissions(this IServiceCollection services) =>
         services

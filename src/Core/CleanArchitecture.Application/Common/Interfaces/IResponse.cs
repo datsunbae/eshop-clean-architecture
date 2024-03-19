@@ -2,4 +2,5 @@
 
 public interface IResponse
 {
+    public Guid Id { get; set; }
 }
