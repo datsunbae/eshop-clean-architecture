@@ -1,0 +1,6 @@
+{
+  "OutboxSettings": {
+    "IntervalInSeconds": 1,
+    "BatchSize": 10
+  }
+}

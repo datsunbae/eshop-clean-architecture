@@ -35,4 +35,6 @@ public interface IJobService
     bool Requeue(string jobId);
 
     bool Requeue(string jobId, string fromState);
+
+    void Recurring<T>(string jobName, Expression<Func<T, Task>> methodCall, string cronExpression);
 }

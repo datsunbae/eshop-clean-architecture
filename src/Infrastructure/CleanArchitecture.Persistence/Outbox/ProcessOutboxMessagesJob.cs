@@ -20,14 +20,14 @@ internal sealed class ProcessOutboxMessagesJob
     private readonly ISqlConnectionFactory _sqlConnectionFactory;
     private readonly IPublisher _publisher;
     private readonly IDateTimeService _dateTimeService;
-    private readonly OutboxOptions _outboxOptions;
+    private readonly OutboxSettings _outboxOptions;
     private readonly ILogger<ProcessOutboxMessagesJob> _logger;
 
     public ProcessOutboxMessagesJob(
         ISqlConnectionFactory sqlConnectionFactory,
         IPublisher publisher,
         IDateTimeService dateTimeService,
-        IOptions<OutboxOptions> outboxOptions,
+        IOptions<OutboxSettings> outboxOptions,
         ILogger<ProcessOutboxMessagesJob> logger)
     {
         _sqlConnectionFactory = sqlConnectionFactory;
@@ -81,12 +81,10 @@ internal sealed class ProcessOutboxMessagesJob
         IDbTransaction transaction)
     {
         string sql = $"""
-                      SELECT id, content
-                      FROM outbox_messages
-                      WHERE processed_on_utc IS NULL
-                      ORDER BY occurred_on_utc
-                      LIMIT {_outboxOptions.BatchSize}
-                      FOR UPDATE
+                      SELECT TOP({_outboxOptions.BatchSize}) Id, Content
+                      FROM OutboxMessages WITH (UPDLOCK)
+                      WHERE ProcessedOnUtc IS NULL
+                      ORDER BY OccurredOnUtc
                       """;
 
         IEnumerable<OutboxMessageResponse> outboxMessages = await connection.QueryAsync<OutboxMessageResponse>(
@@ -103,9 +101,9 @@ internal sealed class ProcessOutboxMessagesJob
         Exception? exception)
     {
         const string sql = @"
-            UPDATE outbox_messages
-            SET processed_on_utc = @ProcessedOnUtc,
-                error = @Error
+            UPDATE OutboxMessages
+            SET ProcessedOnUtc = @ProcessedOnUtc,
+                Error = @Error
             WHERE id = @Id";
 
         await connection.ExecuteAsync(

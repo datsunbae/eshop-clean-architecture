@@ -1,8 +1,7 @@
 ﻿using CleanArchitecture.Application.Common.Messaging;
 using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Application.Common.Persistence;
 using CleanArchitecture.Application.Common.Persistence.Repositories;
-using CleanArchitecture.Domain.Categories;
+using CleanArchitecture.Application.Features.V1.Categories.Specs;
 using CleanArchitecture.Domain.Common;
 
 namespace CleanArchitecture.Application.Features.V1.Categories.Queries.GetCategories;

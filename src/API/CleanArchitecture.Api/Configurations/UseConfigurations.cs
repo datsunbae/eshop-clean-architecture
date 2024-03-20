@@ -24,6 +24,8 @@ public static class UseConfigurations
                 .AddJsonFile($"{configurationsDirectory}/security.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"{configurationsDirectory}/signalr.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"{configurationsDirectory}/signalr.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"{configurationsDirectory}/outbox.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"{configurationsDirectory}/outbox.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
         return builder;
     }

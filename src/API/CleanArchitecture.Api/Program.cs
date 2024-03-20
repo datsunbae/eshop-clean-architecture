@@ -43,8 +43,10 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
-app.UseInfrastructureIndentity();
+app.UseInfrastructure(builder.Configuration);
 app.UseApiApplication();
-app.UseInfrastructure();
+app.UseInfrastructureIndentity();
+
+app.Services.AddOutBoxJob(builder.Configuration);
 
 app.Run();

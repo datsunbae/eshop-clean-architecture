@@ -29,17 +29,16 @@ public static class DependencyInjection
             .AddCaching(config)
             .AddMail(config)
             .AddNotifications()
-            .AddFileStorage();
-
-        services.AddServices();
+            .AddFileStorage()
+            .AddServices();
 
         return services;
     }
 
-    public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder builder)
+    public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder builder, IConfiguration configuration)
     {
         builder
-            .UseHangfireDashboard()
+            .UseHangfireDashboard(configuration)
             .UseFileStorage();
 
         return builder;
@@ -141,7 +140,6 @@ public static class DependencyInjection
 
     public static IServiceCollection AddFileStorage(this IServiceCollection services) =>
         services.AddScoped<IFileStorageService, LocalFileStorageService>();
-
 
     private static IServiceCollection AddNotifications(this IServiceCollection services)
     {

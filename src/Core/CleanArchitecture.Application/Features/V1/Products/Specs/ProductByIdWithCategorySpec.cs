@@ -3,7 +3,7 @@ using CleanArchitecture.Domain.Products;
 
 namespace CleanArchitecture.Application.Features.V1.Products.Specs;
 
-public sealed class ProductByIdWithCategorySpec : Specification<Product, ProductResponse>
+public sealed class ProductByIdWithCategorySpec : Specification<Product, ProductResponse>, ISingleResultSpecification
 {
     public ProductByIdWithCategorySpec(Guid id) =>
         Query

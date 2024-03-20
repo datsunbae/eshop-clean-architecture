@@ -1,6 +1,6 @@
 ﻿namespace CleanArchitecture.Persistence.Outbox;
 
-public sealed class OutboxOptions
+public sealed class OutboxSettings
 {
     public int IntervalInSeconds { get; init; }
 

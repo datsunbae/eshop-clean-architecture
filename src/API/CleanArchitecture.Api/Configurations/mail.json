@@ -2,9 +2,9 @@
   "MailSettings": {
     "DisplayName": "Kodoku",
     "From": "datsunbae@gmail.com",
-    "Host": "smtp.ethereal.email",
-    "Password": "AdEqEKB4QwWX9Xey82",
+    "Host": "smtp.gmail.com",
+    "Password": "klrm tmwz yrkt kquw",
     "Port": 587,
-    "UserName": "kodoku"
+    "UserName": "datsunbae"
   }
 }

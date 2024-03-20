@@ -13,7 +13,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
             .HasMaxLength(255)
             .IsRequired();
 
-        builder.HasOne<Category>()
+        builder.HasOne<Category>(c => c.Category)
             .WithMany()
             .HasForeignKey(p => p.CategoryId);
     }

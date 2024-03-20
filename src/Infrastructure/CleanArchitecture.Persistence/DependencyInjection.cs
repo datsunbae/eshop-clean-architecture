@@ -1,7 +1,6 @@
-﻿using Ardalis.Specification;
+﻿using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Application.Common.Persistence;
 using CleanArchitecture.Application.Common.Persistence.Repositories;
-using CleanArchitecture.Domain.Common;
 using CleanArchitecture.Persistence.Common;
 using CleanArchitecture.Persistence.Outbox;
 using CleanArchitecture.Persistence.Repositories;
@@ -30,11 +29,11 @@ public static class DependencyInjection
         services.AddSingleton<ISqlConnectionFactory>(_ =>
             new SqlConnectionFactory(connectionString));
 
-        services.Configure<OutboxOptions>(configuration.GetSection("Outbox"));
-
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
         services.AddRepositories();
+
+        services.AddOutbox(configuration);
 
         return services;
     }
@@ -45,5 +44,29 @@ public static class DependencyInjection
         services.AddScoped<IProductRepository, ProductRepository>();
 
         return services;
+    }
+
+    private static IServiceCollection AddOutbox(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.Configure<OutboxSettings>(configuration.GetSection("OutboxSettings"));
+        return services;
+    }
+
+    public static void AddOutBoxJob(this IServiceProvider serviceProvider, IConfiguration configuration)
+    {
+        using (var scope = serviceProvider.CreateScope())
+        {
+            var job = scope.ServiceProvider.GetRequiredService<IJobService>();
+
+            string intervalValue = configuration?.GetSection("OutboxSettings:IntervalInMinutes")?.Value;
+            int intervalInMinutes = 1; // Default value if configuration is null or if value is not parsable
+
+            if (!string.IsNullOrEmpty(intervalValue) && int.TryParse(intervalValue, out int parsedInterval))
+            {
+                intervalInMinutes = parsedInterval;
+            }
+
+            job.Recurring<ProcessOutboxMessagesJob>("ProcessOutboxMessages", job => job.Execute(), $"*/{intervalInMinutes} * * * *");
+        }
     }
 }

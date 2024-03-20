@@ -24,6 +24,9 @@ public class HangfireService : IJobService
     public string Enqueue<T>(Expression<Func<T, Task>> methodCall) =>
         BackgroundJob.Enqueue(methodCall);
 
+    public void Recurring<T>(string jobName, Expression<Func<T, Task>> methodCall, string cronExpression) =>
+        RecurringJob.AddOrUpdate<T>(jobName, methodCall, cronExpression);
+
     public bool Requeue(string jobId) =>
         BackgroundJob.Requeue(jobId);
 

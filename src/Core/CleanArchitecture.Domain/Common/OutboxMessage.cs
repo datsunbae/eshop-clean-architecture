@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Persistence.Outbox;
+﻿namespace CleanArchitecture.Domain.Common;
 
 public sealed class OutboxMessage
 {
@@ -6,8 +6,8 @@ public sealed class OutboxMessage
     {
         Id = id;
         OccurredOnUtc = occurredOnUtc;
-        Content = content;
         Type = type;
+        Content = content;
     }
 
     public Guid Id { get; init; }

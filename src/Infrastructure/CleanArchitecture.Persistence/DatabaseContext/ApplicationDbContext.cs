@@ -7,12 +7,18 @@ using CleanArchitecture.Domain.Products;
 using CleanArchitecture.Persistence.Extentions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Newtonsoft.Json;
 using System.Reflection;
 
 namespace CleanArchitecture.Persistence;
 
 public sealed class ApplicationDbContext : DbContext, IUnitOfWork
 {
+    private static readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings
+    {
+        TypeNameHandling = TypeNameHandling.All
+    };
+
     private readonly ICurrentUser _currentUser;
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ICurrentUser currentUser) : base(options)
@@ -20,6 +26,7 @@ public sealed class ApplicationDbContext : DbContext, IUnitOfWork
         _currentUser = currentUser ?? throw new ArgumentNullException(nameof(currentUser));
     }
 
+    public DbSet<OutboxMessage> OutboxMessages { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Product> Products { get; set; }
 
@@ -38,6 +45,8 @@ public sealed class ApplicationDbContext : DbContext, IUnitOfWork
         try
         {
             UpdateAuditableEntities();
+
+            AddDomainEventsAsOutboxMessages();
 
             int result = await base.SaveChangesAsync(cancellationToken);
 
@@ -75,6 +84,29 @@ public sealed class ApplicationDbContext : DbContext, IUnitOfWork
                     .CurrentValue = _currentUser.GetUserId();
             }
         }
+    }
+
+    private void AddDomainEventsAsOutboxMessages()
+    {
+        var outboxMessages = ChangeTracker
+            .Entries<BaseEntityRoot>()
+            .Select(entry => entry.Entity)
+            .SelectMany(entity =>
+            {
+                var domainEvents = entity.GetDomainEvents();
+
+                entity.ClearDomainEvents();
+
+                return domainEvents;
+            })
+            .Select(domainEvent => new OutboxMessage(
+                Guid.NewGuid(),
+                DateTime.UtcNow,
+                domainEvent.GetType().Name,
+                JsonConvert.SerializeObject(domainEvent, JsonSerializerSettings)))
+            .ToList();
+
+        AddRange(outboxMessages);
     }
 
 }
