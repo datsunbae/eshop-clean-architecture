@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Domain.Common;
+﻿namespace CleanArchitecture.Persistence.Outbox;
 
 public sealed class OutboxMessage
 {

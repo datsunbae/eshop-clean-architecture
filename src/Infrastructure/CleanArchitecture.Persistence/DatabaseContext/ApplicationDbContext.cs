@@ -5,6 +5,7 @@ using CleanArchitecture.Domain.Categories;
 using CleanArchitecture.Domain.Common;
 using CleanArchitecture.Domain.Products;
 using CleanArchitecture.Persistence.Extentions;
+using CleanArchitecture.Persistence.Outbox;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Newtonsoft.Json;
