@@ -131,12 +131,19 @@ public static class DependencyInjection
         return services;
     }
 
-    private static IApplicationBuilder UseFileStorage(this IApplicationBuilder app) =>
+    private static IApplicationBuilder UseFileStorage(this IApplicationBuilder app)
+    {
+        var test = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Files"));
+
         app.UseStaticFiles(new StaticFileOptions()
         {
             FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Files")),
             RequestPath = new PathString("/Files")
         });
+
+        return app;
+    }
+        
 
     public static IServiceCollection AddFileStorage(this IServiceCollection services) =>
         services.AddScoped<IFileStorageService, LocalFileStorageService>();

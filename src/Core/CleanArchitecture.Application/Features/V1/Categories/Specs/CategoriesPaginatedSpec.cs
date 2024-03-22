@@ -4,7 +4,7 @@ using CleanArchitecture.Domain.Categories;
 
 namespace CleanArchitecture.Application.Features.V1.Categories.Specs;
 
-public sealed class CategoriesSpec : EntitiesByPaginationFilterSpec<Category, CategoryResponse>
+public sealed class CategoriesPaginatedSpec : EntitiesByPaginationFilterSpec<Category, CategoryResponse>
 {
-    public CategoriesSpec(GetCategoriesQuery filter) : base(filter) { }
+    public CategoriesPaginatedSpec(GetCategoriesQuery filter) : base(filter) { }
 }

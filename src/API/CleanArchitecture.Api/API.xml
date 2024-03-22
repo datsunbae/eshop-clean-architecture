@@ -4,6 +4,21 @@
         <name>CleanArchitecture.Api</name>
     </assembly>
     <members>
+        <member name="M:CleanArchitecture.Api.Controllers.Identity.AuthController.Login(CleanArchitecture.Application.Features.Identities.Authentication.LoginRequest,System.Threading.CancellationToken)">
+            <summary>
+            Login
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CleanArchitecture.Api.Controllers.Identity.AuthController.RefreshAsync(CleanArchitecture.Application.Features.Identities.Authentication.RefreshTokenRequest)">
+            <summary>
+            Refresh token
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
         <member name="M:CleanArchitecture.Api.Controllers.V1.CategoryController.GetPaginatedCategories(CleanArchitecture.Application.Features.V1.Categories.Queries.GetCategories.GetCategoriesQuery)">
             <summary>
             Get the paginated category list

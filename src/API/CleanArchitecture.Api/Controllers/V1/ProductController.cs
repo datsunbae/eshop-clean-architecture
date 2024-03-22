@@ -63,6 +63,10 @@ public class ProductController : BaseApiController
     public async Task<IActionResult> CreateProduct([FromBody] CreateProductCommand request)
     {
         var result = await Sender.Send(request);
+
+        if (result.IsFailure)
+            throw new BadRequestException(new List<Error> { result.Error });
+
         return CreatedAtAction(nameof(GetProductById), new { Id = result.Value }, result.Value);
     }
 
@@ -92,6 +96,7 @@ public class ProductController : BaseApiController
     /// <exception cref="BadRequestException"></exception>
     [HttpDelete("{id}")]
     [ProducesResponseType(typeof(Result<Guid>), StatusCodes.Status200OK)]
+    [MustHavePermission(Action.Delete, Resource.Products)]
     public async Task<IActionResult> DeleteProduct(Guid id)
     {
         var result = await Sender.Send(new DeleteProductCommand(id));

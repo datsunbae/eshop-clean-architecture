@@ -19,7 +19,7 @@ public sealed class GetCategoriesQueryHandler : IQueryHandler<GetCategoriesQuery
         GetCategoriesQuery request, 
         CancellationToken cancellationToken)
     {
-        var spec = new CategoriesSpec(request);
+        var spec = new CategoriesPaginatedSpec(request);
         var result = await _categoryRepository
             .PaginatedListAsync(
                 spec, 

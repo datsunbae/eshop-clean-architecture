@@ -12,13 +12,24 @@ public sealed class AuthController : ControllerBase
 
     public AuthController(IAuthService tokenService) => _tokenService = tokenService;
 
-    [HttpPost]
+    /// <summary>
+    /// Login
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("login")]
     [AllowAnonymous]
     public Task<LoginResponse> Login(LoginRequest request, CancellationToken cancellationToken)
     {
         return _tokenService.GetTokenAsync(request, GetIpAddress()!, cancellationToken);
     }
 
+    /// <summary>
+    /// Refresh token
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
     [HttpPost("refresh")]
     [AllowAnonymous]
     public Task<LoginResponse> RefreshAsync(RefreshTokenRequest request)
