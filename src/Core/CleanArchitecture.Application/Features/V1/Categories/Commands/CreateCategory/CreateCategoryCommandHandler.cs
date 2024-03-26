@@ -16,7 +16,7 @@ public sealed class CreateCategoryCommandHandler : ICommandHandler<CreateCategor
 
     public async Task<Result<CategoryResponse>> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
     {
-        var category = new Category(Guid.NewGuid(), request.Name);
+        var category = Category.Create(request.Name);
 
         return (await _categoryRepository.AddAsync(category))
             .Adapt<CategoryResponse>();

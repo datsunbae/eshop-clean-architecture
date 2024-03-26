@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Products\Enums\" />
     <Folder Include="Products\ValueObjects\" />
   </ItemGroup>
 

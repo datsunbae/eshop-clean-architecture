@@ -1,19 +1,17 @@
 ﻿using CleanArchitecture.Domain.Categories;
 using CleanArchitecture.Domain.Common;
-using CleanArchitecture.Domain.Products.Enums;
 using CleanArchitecture.Domain.Products.Events;
 
 namespace CleanArchitecture.Domain.Products;
 
-public class Product : BaseEntityRoot
+public sealed class Product : BaseEntityRoot
 {
-    public Product(
+    private Product(
         Guid id,
         string name,
         string? description,
         decimal price,
         string? imagePath,
-        OperatingSystemEnum operatingSystem,
         Guid categoryId) : base(id)
     {
         Name = name;
@@ -21,7 +19,6 @@ public class Product : BaseEntityRoot
         Price = price;
         CategoryId = categoryId;
         ImagePath = imagePath;
-        OperatingSystem = operatingSystem;
     }
 
     public string Name { get; private set; }
@@ -32,18 +29,33 @@ public class Product : BaseEntityRoot
 
     public string? ImagePath { get; private set; }
 
-    public OperatingSystemEnum OperatingSystem { get; private set; }
-
     public Guid CategoryId { get; private set; }
 
-    public virtual Category Category { get; private set; }
+    public Category Category { get; private set; }
+
+    public static Product Create(
+        string name,
+        string descirtion,
+        decimal price,
+        string imagePath,
+        Guid categoryId)
+    {
+        Product product = new Product(
+            Guid.NewGuid(),
+            name,
+            descirtion,
+            price,
+            imagePath,
+            categoryId);
+
+        return product;
+    }
 
     public Product Update(
         string? name,
         string? description,
         decimal? price,
         string? imagePath,
-        OperatingSystemEnum? operatingSystem,
         Guid? categoryId)
     {
         if(name is not null && Name?.Equals(name) is not true) 
@@ -58,14 +70,12 @@ public class Product : BaseEntityRoot
         if(imagePath is not null && ImagePath?.Equals(imagePath) is not true)
             ImagePath = imagePath;
 
-        if(categoryId.HasValue && CategoryId.Equals(categoryId.Value) is not true && categoryId.Value != Guid.Empty)
+        if (categoryId.HasValue && CategoryId.Equals(categoryId.Value) is not true && categoryId.Value != Guid.Empty)
             CategoryId = categoryId.Value;
-
-        if (operatingSystem is not null && OperatingSystem != operatingSystem)
-            OperatingSystem = operatingSystem.Value;
 
         RaiseDomainEvent(new ProductUpdatedDomainEvent(Id));
 
         return this;
     }
+  
 }

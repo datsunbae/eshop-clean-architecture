@@ -36,8 +36,7 @@ public sealed class CreateProductCommandHandler : ICommandHandler<CreateProductC
                 cancellationToken)
             : null;
 
-        var product = new Product(
-            Guid.NewGuid(),
+        var product = Product.Create(
             request.Name,
             request.Description,
             request.Price,

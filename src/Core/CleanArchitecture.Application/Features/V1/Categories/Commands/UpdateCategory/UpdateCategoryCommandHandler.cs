@@ -20,9 +20,9 @@ public class UpdateCategoryCommandHandler : ICommandHandler<UpdateCategoryComman
         if (category == null)
             return Result.Failure<Guid>(CategoryErrors.NotFound);
 
-        var updateCategory = new Category(category.Id, request.Name);
+        category.Update(request.Name);
 
-        await _categoryRepository.UpdateAsync(updateCategory, cancellationToken);
+        await _categoryRepository.UpdateAsync(category, cancellationToken);
 
         return category.Id;
     }

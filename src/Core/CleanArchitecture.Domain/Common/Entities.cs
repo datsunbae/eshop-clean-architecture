@@ -6,7 +6,7 @@ public interface IAggregateRoot
 
 public abstract class BaseEntity : IAuditableEntity, ISoftDelete
 {
-    public Guid Id { get; protected set; }
+    public Guid Id { get; private set; }
     public Guid CreatedBy { get; set; }
     public DateTime CreatedOn { get; set; }
     public Guid? LastModifiedBy { get; set; }
@@ -22,11 +22,11 @@ public abstract class BaseEntity : IAuditableEntity, ISoftDelete
 
 public abstract class BaseEntityRoot : BaseEntity, IAggregateRoot
 {
+    private readonly List<IDomainEvent> _domainEvents = new();
+
     protected BaseEntityRoot(Guid id) : base(id)
     {
     }
-
-    private readonly List<IDomainEvent> _domainEvents = new();
 
     public IReadOnlyList<IDomainEvent> GetDomainEvents()
     {
