@@ -1,10 +1,10 @@
 ﻿using Asp.Versioning;
 using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Application.Features.V1.Products;
 using CleanArchitecture.Application.Features.V1.Products.Commands.CreateProduct;
 using CleanArchitecture.Application.Features.V1.Products.Commands.DeleteProduct;
 using CleanArchitecture.Application.Features.V1.Products.Commands.UpdateProduct;
+using CleanArchitecture.Application.Features.V1.Products.Models.Responses;
 using CleanArchitecture.Application.Features.V1.Products.Queries.GetProductById;
 using CleanArchitecture.Application.Features.V1.Products.Queries.GetProducts;
 using CleanArchitecture.Domain.Common;

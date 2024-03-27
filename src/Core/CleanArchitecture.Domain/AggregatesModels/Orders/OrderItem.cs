@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Domain.Common;
-using System.Net.NetworkInformation;
 
 namespace CleanArchitecture.Domain.AggregatesModels.Orders;
 

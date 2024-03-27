@@ -2,6 +2,4 @@
 
 namespace CleanArchitecture.Application.Features.V1.Baskets.Commands.RemoveBasketProductItem;
 
-public sealed record RemoveBasketProductItemCommand(
-    Guid UserId,
-    Guid ProductId) : ICommand<Guid>;
+public sealed record RemoveBasketProductItemCommand(Guid ProductId) : ICommand<Guid>;

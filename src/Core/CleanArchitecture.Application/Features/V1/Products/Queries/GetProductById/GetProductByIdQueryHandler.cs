@@ -1,5 +1,6 @@
 ﻿using Ardalis.Specification;
 using CleanArchitecture.Application.Common.Messaging;
+using CleanArchitecture.Application.Features.V1.Products.Models.Responses;
 using CleanArchitecture.Application.Features.V1.Products.Specs;
 using CleanArchitecture.Domain.AggregatesModels.Products;
 using CleanArchitecture.Domain.AggregatesModels.Products.Repository;

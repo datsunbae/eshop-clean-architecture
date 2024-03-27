@@ -7,11 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="8.0.0" />
     <PackageReference Include="MediatR" Version="12.2.0" />
-	<PackageReference Include="Ardalis.Specification" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="AggregatesModels\Baskets\Specifications\" />
+    <Folder Include="AggregatesModels\Categories\Specifications\" />
+    <Folder Include="AggregatesModels\Products\Specifications\" />
     <Folder Include="AggregatesModels\Products\ValueObjects\" />
   </ItemGroup>
 

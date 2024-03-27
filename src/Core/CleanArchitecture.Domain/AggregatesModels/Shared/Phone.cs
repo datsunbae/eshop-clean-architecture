@@ -1,3 +1,3 @@
 ﻿namespace CleanArchitecture.Domain.AggregatesModels.Shared;
 
-public sealed record Phone(string Value);
+public record Phone(string Value);

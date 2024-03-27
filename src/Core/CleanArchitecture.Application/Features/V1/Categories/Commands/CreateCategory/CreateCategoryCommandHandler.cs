@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Application.Common.Messaging;
+using CleanArchitecture.Application.Features.V1.Categories.Models.Responses;
 using CleanArchitecture.Domain.AggregatesModels.Categories;
 using CleanArchitecture.Domain.AggregatesModels.Categories.Repository;
 using CleanArchitecture.Domain.Common;

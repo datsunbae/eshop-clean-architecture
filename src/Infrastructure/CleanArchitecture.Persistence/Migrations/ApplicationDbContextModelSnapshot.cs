@@ -22,7 +22,81 @@ namespace CleanArchitecture.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CleanArchitecture.Domain.Categories.Category", b =>
+            modelBuilder.Entity("CleanArchitecture.Domain.AggregatesModels.Baskets.Basket", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Baskets");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.AggregatesModels.Baskets.BasketProductItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BasketId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BasketId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("BasketProductItems");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.AggregatesModels.Categories.Category", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -55,7 +129,85 @@ namespace CleanArchitecture.Persistence.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Domain.Products.Product", b =>
+            modelBuilder.Entity("CleanArchitecture.Domain.AggregatesModels.Orders.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.AggregatesModels.Orders.OrderItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderItems");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.AggregatesModels.Products.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -131,15 +283,105 @@ namespace CleanArchitecture.Persistence.Migrations
                     b.ToTable("OutboxMessages");
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Domain.Products.Product", b =>
+            modelBuilder.Entity("CleanArchitecture.Domain.AggregatesModels.Baskets.BasketProductItem", b =>
                 {
-                    b.HasOne("CleanArchitecture.Domain.Categories.Category", "Category")
+                    b.HasOne("CleanArchitecture.Domain.AggregatesModels.Baskets.Basket", null)
+                        .WithMany("BasketProductItems")
+                        .HasForeignKey("BasketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CleanArchitecture.Domain.AggregatesModels.Products.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.AggregatesModels.Orders.Order", b =>
+                {
+                    b.OwnsOne("CleanArchitecture.Domain.AggregatesModels.Shared.UserInformation", "UserInformation", b1 =>
+                        {
+                            b1.Property<Guid>("OrderId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("Phone")
+                                .IsRequired()
+                                .HasMaxLength(20)
+                                .HasColumnType("nvarchar(20)");
+
+                            b1.Property<string>("UserName")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("OrderId");
+
+                            b1.ToTable("Orders");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderId");
+
+                            b1.OwnsOne("CleanArchitecture.Domain.AggregatesModels.Shared.Address", "Address", b2 =>
+                                {
+                                    b2.Property<Guid>("UserInformationOrderId")
+                                        .HasColumnType("uniqueidentifier");
+
+                                    b2.Property<string>("City")
+                                        .IsRequired()
+                                        .HasMaxLength(50)
+                                        .HasColumnType("nvarchar(50)");
+
+                                    b2.Property<string>("Street")
+                                        .IsRequired()
+                                        .HasMaxLength(100)
+                                        .HasColumnType("nvarchar(100)");
+
+                                    b2.HasKey("UserInformationOrderId");
+
+                                    b2.ToTable("Orders");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("UserInformationOrderId");
+                                });
+
+                            b1.Navigation("Address")
+                                .IsRequired();
+                        });
+
+                    b.Navigation("UserInformation")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.AggregatesModels.Orders.OrderItem", b =>
+                {
+                    b.HasOne("CleanArchitecture.Domain.AggregatesModels.Orders.Order", null)
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.AggregatesModels.Products.Product", b =>
+                {
+                    b.HasOne("CleanArchitecture.Domain.AggregatesModels.Categories.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.AggregatesModels.Baskets.Basket", b =>
+                {
+                    b.Navigation("BasketProductItems");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.AggregatesModels.Orders.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }

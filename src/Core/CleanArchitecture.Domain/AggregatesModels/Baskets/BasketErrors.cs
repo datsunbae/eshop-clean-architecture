@@ -11,4 +11,8 @@ public static class BasketErrors
     public static Error BasketProductItemNotFound = new(
         "BasketProductItem.NotFound",
         "Basket product item not found!");
+
+    public static Error BasketProductItemEmpty = new(
+        "BasketProductItem.Empty",
+        "Basket product item is empty!");
 }

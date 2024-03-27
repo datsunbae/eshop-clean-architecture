@@ -1,8 +1,9 @@
 ﻿using Asp.Versioning;
 using CleanArchitecture.Application.Features.V1.Baskets.Commands.AddBasketProductItem;
+using CleanArchitecture.Application.Features.V1.Baskets.Commands.CheckoutBasket;
 using CleanArchitecture.Application.Features.V1.Baskets.Commands.ClearBasket;
 using CleanArchitecture.Application.Features.V1.Baskets.Commands.RemoveBasketProductItem;
-using CleanArchitecture.Application.Features.V1.Baskets.Dtos;
+using CleanArchitecture.Application.Features.V1.Baskets.Models.Responses;
 using CleanArchitecture.Application.Features.V1.Baskets.Queries.GetBasket;
 using CleanArchitecture.Domain.Common;
 using MediatR;
@@ -48,7 +49,7 @@ namespace CleanArchitecture.Api.Controllers.V1
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpPatch]
+        [HttpPut("remove-product-item")]
         [ProducesResponseType(typeof(Result<Guid>), StatusCodes.Status200OK)]
         public async Task<IActionResult> RemoveBasketProductItem([FromBody] RemoveBasketProductItemCommand request)
         {
@@ -61,9 +62,21 @@ namespace CleanArchitecture.Api.Controllers.V1
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpPatch]
+        [HttpDelete("clear-basket")]
         [ProducesResponseType(typeof(Result<Guid>), StatusCodes.Status200OK)]
         public async Task<IActionResult> ClearBasket([FromBody] ClearBasketCommand request)
+        {
+            var result = await Sender.Send(request);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Check out
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost("check-out")]
+        public async Task<IActionResult> Checkout([FromBody] CheckoutCommand request)
         {
             var result = await Sender.Send(request);
             return Ok(result);

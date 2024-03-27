@@ -31,10 +31,12 @@ var app = builder.Build();
 await app.Services.InitializeDatabasesAsync();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwaggerExtension();
-}
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwaggerExtension();
+//}
+
+app.UseSwaggerExtension();
 
 app.UseRouting();
 app.UseHttpsRedirection();

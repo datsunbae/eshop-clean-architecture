@@ -1,7 +1,9 @@
 ﻿using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Common.Interfaces.Auth;
 using CleanArchitecture.Application.Common.Persistence;
+using CleanArchitecture.Domain.AggregatesModels.Baskets;
 using CleanArchitecture.Domain.AggregatesModels.Categories;
+using CleanArchitecture.Domain.AggregatesModels.Orders;
 using CleanArchitecture.Domain.AggregatesModels.Products;
 using CleanArchitecture.Domain.Common;
 using CleanArchitecture.Persistence.Extentions;
@@ -30,6 +32,10 @@ public sealed class ApplicationDbContext : DbContext, IUnitOfWork
     public DbSet<OutboxMessage> OutboxMessages { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Product> Products { get; set; }
+    public DbSet<Basket> Baskets { get; set; }
+    public DbSet<BasketProductItem> BasketProductItems { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<OrderItem> OrderItems { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

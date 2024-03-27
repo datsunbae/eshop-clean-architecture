@@ -1,10 +1,10 @@
 ﻿using Asp.Versioning;
 using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Application.Features.V1.Categories;
 using CleanArchitecture.Application.Features.V1.Categories.Commands.CreateCategory;
 using CleanArchitecture.Application.Features.V1.Categories.Commands.DeleteCategory;
 using CleanArchitecture.Application.Features.V1.Categories.Commands.UpdateCategory;
+using CleanArchitecture.Application.Features.V1.Categories.Models.Responses;
 using CleanArchitecture.Application.Features.V1.Categories.Queries.GetCategories;
 using CleanArchitecture.Application.Features.V1.Categories.Queries.GetCategoryById;
 using CleanArchitecture.Domain.Common;

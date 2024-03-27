@@ -6,6 +6,11 @@ namespace CleanArchitecture.Domain.AggregatesModels.Baskets;
 public sealed class Basket : BaseEntityRoot
 {
     private readonly List<BasketProductItem> _bastketProductItems = new();
+
+    private Basket(
+        Guid id) : base(id)
+    {
+    }
     private Basket(
         Guid id,
         Guid userId) : base(id)
@@ -27,6 +32,12 @@ public sealed class Basket : BaseEntityRoot
     public static Basket Create(Guid userId)
     {
         Basket basket = new Basket(Guid.NewGuid(), userId);
+        return basket;
+    }
+
+    public static Basket Create()
+    {
+        Basket basket = new Basket(Guid.NewGuid());
         return basket;
     }
 

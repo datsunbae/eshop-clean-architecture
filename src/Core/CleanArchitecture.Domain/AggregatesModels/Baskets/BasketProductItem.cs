@@ -20,12 +20,15 @@ public class BasketProductItem : BaseEntity
     public Guid BasketId { get; private set; }
     public Guid ProductId { get; private set; }
     public int Quantity { get; private set; }
-    public virtual Product Product { get; init; }
+    public virtual Product? Product { get; init; }
 
     #region NotMapped
 
     [NotMapped]
-    public decimal Price { get => Product.Price; }
+    public string ProductName { get => Product is not null ? Product.Name : string.Empty; }
+
+    [NotMapped]
+    public decimal Price { get => Product is not null ? Product.Price : 0; }
 
     #endregion
 

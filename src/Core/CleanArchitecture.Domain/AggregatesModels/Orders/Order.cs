@@ -7,40 +7,43 @@ namespace CleanArchitecture.Domain.AggregatesModels.Orders;
 
 public sealed class Order : BaseEntityRoot
 {
+    private readonly List<OrderItem> _orderItems = new();
     private Order(
         Guid id,
-        Guid? userId,
-        UserInfomation userInfomation,
-        List<OrderItem> orderItems) : base(id)
+        Guid userId) : base(id)
     {
         UserId = userId;
-        UserInfomation = userInfomation;
-        OrderItems = orderItems;
     }
 
-    public Guid? UserId { get; private set; }
+    public Guid UserId { get; private set; }
 
-    public UserInfomation UserInfomation { get; private set; }
+    public UserInformation UserInformation { get; private set; }
 
     public decimal TotalPrice { get => OrderItems.Sum(o => o.Quantity * o.Price); }
 
     public OrderStatus Status { get; private set; } = OrderStatus.Pending;
 
-    public List<OrderItem> OrderItems { get; private set; }
+    public IReadOnlyCollection<OrderItem> OrderItems => _orderItems;
 
-    public static Order Create(Basket basket, UserInfomation userInfomation)
+    public static Order Create(Basket basket, UserInformation userInfomation)
     {
-        Guid orderId = Guid.NewGuid();
-
-        List<OrderItem> orderItems = basket.BasketProductItems.Select(b =>
-            OrderItem.Create(orderId, b.ProductId, b.Quantity, b.Price)).ToList();
-
         Order order = new Order(
-            orderId,
-            basket.UserId,
-            userInfomation,
-            orderItems);
+            Guid.NewGuid(),
+            basket.UserId);
+        order.UserInformation = userInfomation;
+
+        foreach(var item in basket.BasketProductItems)
+        {
+            order.AddOrderItem(item.ProductId, item.Quantity, item.Product.Price);
+        }
 
         return order;
+    }
+
+    private void AddOrderItem(Guid productId, int quantity, decimal price)
+    {
+        OrderItem orderItem = _orderItems.FirstOrDefault(o => o.ProductId == productId);
+        if (orderItem is not null)
+            _orderItems.Add(OrderItem.Create(Id, productId, quantity, price));
     }
 }
