@@ -1,0 +1,27 @@
+
+name: Deploy Eshop API 🚀
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+jobs:
+  publish:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Install dependencies
+        run: dotnet restore ./src/API/CleanArchitecture.Api/CleanArchitecture.Api.csproj
+
+      - name: Buid
+        run: dotnet build ./src/API/CleanArchitecture.Api/CleanArchitecture.Api.csproj --configuration Release --no-restore
+
+     
