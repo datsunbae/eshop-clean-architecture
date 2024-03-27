@@ -1,9 +1,10 @@
 ﻿using CleanArchitecture.Application.Common.FileStorage;
 using CleanArchitecture.Application.Common.Messaging;
-using CleanArchitecture.Application.Common.Persistence.Repositories;
-using CleanArchitecture.Domain.Categories;
+using CleanArchitecture.Domain.AggregatesModels.Categories;
+using CleanArchitecture.Domain.AggregatesModels.Categories.Repository;
+using CleanArchitecture.Domain.AggregatesModels.Products;
+using CleanArchitecture.Domain.AggregatesModels.Products.Repository;
 using CleanArchitecture.Domain.Common;
-using CleanArchitecture.Domain.Products;
 using Mapster;
 
 namespace CleanArchitecture.Application.Features.V1.Products.Commands.CreateProduct;

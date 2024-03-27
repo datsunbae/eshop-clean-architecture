@@ -1,9 +1,9 @@
 ﻿using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Common.Interfaces.Auth;
 using CleanArchitecture.Application.Common.Persistence;
-using CleanArchitecture.Domain.Categories;
+using CleanArchitecture.Domain.AggregatesModels.Categories;
+using CleanArchitecture.Domain.AggregatesModels.Products;
 using CleanArchitecture.Domain.Common;
-using CleanArchitecture.Domain.Products;
 using CleanArchitecture.Persistence.Extentions;
 using CleanArchitecture.Persistence.Outbox;
 using Microsoft.EntityFrameworkCore;

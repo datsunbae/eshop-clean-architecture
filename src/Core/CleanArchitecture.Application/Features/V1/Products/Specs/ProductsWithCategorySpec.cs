@@ -1,7 +1,7 @@
 ﻿using Ardalis.Specification;
 using CleanArchitecture.Application.Common.Specification;
 using CleanArchitecture.Application.Features.V1.Products.Queries.GetProducts;
-using CleanArchitecture.Domain.Products;
+using CleanArchitecture.Domain.AggregatesModels.Products;
 
 namespace CleanArchitecture.Application.Features.V1.Products.Specs;
 

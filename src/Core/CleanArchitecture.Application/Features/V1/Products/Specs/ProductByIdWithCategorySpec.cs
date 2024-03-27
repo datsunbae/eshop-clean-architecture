@@ -1,5 +1,5 @@
 ﻿using Ardalis.Specification;
-using CleanArchitecture.Domain.Products;
+using CleanArchitecture.Domain.AggregatesModels.Products;
 
 namespace CleanArchitecture.Application.Features.V1.Products.Specs;
 

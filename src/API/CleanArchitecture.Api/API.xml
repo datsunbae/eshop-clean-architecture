@@ -19,6 +19,34 @@
             <param name="request"></param>
             <returns></returns>
         </member>
+        <member name="M:CleanArchitecture.Api.Controllers.V1.BasketController.GetBasket(System.Guid)">
+            <summary>
+            Get basket by user id
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CleanArchitecture.Api.Controllers.V1.BasketController.AddBasketProductItem(CleanArchitecture.Application.Features.V1.Baskets.Commands.AddBasketProductItem.AddBasketProductItemCommand)">
+            <summary>
+            Add product into basket
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CleanArchitecture.Api.Controllers.V1.BasketController.RemoveBasketProductItem(CleanArchitecture.Application.Features.V1.Baskets.Commands.RemoveBasketProductItem.RemoveBasketProductItemCommand)">
+            <summary>
+            Remove product item in basket
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CleanArchitecture.Api.Controllers.V1.BasketController.ClearBasket(CleanArchitecture.Application.Features.V1.Baskets.Commands.ClearBasket.ClearBasketCommand)">
+            <summary>
+            Clear basket
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
         <member name="M:CleanArchitecture.Api.Controllers.V1.CategoryController.GetPaginatedCategories(CleanArchitecture.Application.Features.V1.Categories.Queries.GetCategories.GetCategoriesQuery)">
             <summary>
             Get the paginated category list

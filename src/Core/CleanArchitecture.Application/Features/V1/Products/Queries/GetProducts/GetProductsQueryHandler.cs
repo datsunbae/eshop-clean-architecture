@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Application.Common.Messaging;
 using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Application.Common.Persistence.Repositories;
 using CleanArchitecture.Application.Features.V1.Products.Specs;
+using CleanArchitecture.Domain.AggregatesModels.Products.Repository;
 using CleanArchitecture.Domain.Common;
 
 namespace CleanArchitecture.Application.Features.V1.Products.Queries.GetProducts;

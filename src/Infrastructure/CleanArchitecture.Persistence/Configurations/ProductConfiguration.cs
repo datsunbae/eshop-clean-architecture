@@ -1,5 +1,5 @@
-﻿using CleanArchitecture.Domain.Categories;
-using CleanArchitecture.Domain.Products;
+﻿using CleanArchitecture.Domain.AggregatesModels.Categories;
+using CleanArchitecture.Domain.AggregatesModels.Products;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

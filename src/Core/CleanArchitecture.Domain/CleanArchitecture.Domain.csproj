@@ -8,11 +8,11 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.2.0" />
+	<PackageReference Include="Ardalis.Specification" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Products\Enums\" />
-    <Folder Include="Products\ValueObjects\" />
+    <Folder Include="AggregatesModels\Products\ValueObjects\" />
   </ItemGroup>
 
 </Project>

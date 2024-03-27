@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Application.Common.Messaging;
-using CleanArchitecture.Application.Common.Persistence.Repositories;
-using CleanArchitecture.Domain.Categories;
+using CleanArchitecture.Domain.AggregatesModels.Categories;
+using CleanArchitecture.Domain.AggregatesModels.Categories.Repository;
 using CleanArchitecture.Domain.Common;
 using Mapster;
 

@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Application.Common.Email;
 using CleanArchitecture.Application.Common.Messaging;
-using CleanArchitecture.Domain.Products.Events;
+using CleanArchitecture.Domain.AggregatesModels.Products.Events;
 
 namespace CleanArchitecture.Application.Features.V1.Products.Events;
 

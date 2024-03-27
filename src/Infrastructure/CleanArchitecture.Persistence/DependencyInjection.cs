@@ -1,6 +1,9 @@
 ﻿using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Application.Common.Persistence;
-using CleanArchitecture.Application.Common.Persistence.Repositories;
+using CleanArchitecture.Domain.AggregatesModels.Baskets.Repository;
+using CleanArchitecture.Domain.AggregatesModels.Categories.Repository;
+using CleanArchitecture.Domain.AggregatesModels.Orders.Repository;
+using CleanArchitecture.Domain.AggregatesModels.Products.Repository;
 using CleanArchitecture.Persistence.Common;
 using CleanArchitecture.Persistence.Outbox;
 using CleanArchitecture.Persistence.Repositories;
@@ -42,6 +45,8 @@ public static class DependencyInjection
     {
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IBasketRepository, BasketRepository>();
+        services.AddScoped<IOrderRepository, OrderRepositoy>();
 
         return services;
     }
