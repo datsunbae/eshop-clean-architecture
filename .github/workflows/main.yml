@@ -8,7 +8,7 @@ on:
       - main
 
 env:
-    AZURE_WEBAPP_NAME: "eshop-clean-architecture"
+  AZURE_WEBAPP_NAME: "eshop-clean-architecture"
 
 jobs:
   publish:
@@ -34,6 +34,6 @@ jobs:
       - name: Deploy to Azure Web App 🚀
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ AZURE_WEBAPP_NAME }}
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.API_PUBLISH_SECRET }}
           package: ./publish
