@@ -1,5 +1,3 @@
-using CleanArchitecture.Application.Common.Messaging;
-
 namespace CleanArchitecture.Application.Features.Identities.Users;
 
 public class CreateUserRequest

@@ -27,4 +27,10 @@
     <ProjectReference Include="..\..\Infrastructure\CleanArchitecture.Persistence\CleanArchitecture.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="EmailTemplates\email-confirmation.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
