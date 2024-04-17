@@ -45,7 +45,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
-app.UseInfrastructure(builder.Configuration);
+app.UseInfrastructure(builder.Configuration, builder.Environment);
 app.UseApiApplication();
 app.UseInfrastructureIndentity();
 

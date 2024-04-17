@@ -12,6 +12,7 @@ using FSH.WebApi.Infrastructure.Caching;
 using FSH.WebApi.Infrastructure.Mailing;
 using Hangfire;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
@@ -35,11 +36,11 @@ public static class DependencyInjection
         return services;
     }
 
-    public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder builder, IConfiguration configuration)
+    public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder builder, IConfiguration configuration, IWebHostEnvironment env)
     {
         builder
             .UseHangfireDashboard(configuration)
-            .UseFileStorage();
+            .UseFileStorage(env);
 
         return builder;
     }
@@ -103,7 +104,7 @@ public static class DependencyInjection
                     options.ConfigurationOptions = new StackExchange.Redis.ConfigurationOptions()
                     {
                         AbortOnConnectFail = true,
-                        EndPoints = { settings.RedisURL }
+                        EndPoints = { settings.RedisURL! }
                     };
                 });
             }
@@ -131,13 +132,21 @@ public static class DependencyInjection
         return services;
     }
 
-    private static IApplicationBuilder UseFileStorage(this IApplicationBuilder app)
+    private static IApplicationBuilder UseFileStorage(this IApplicationBuilder app, IWebHostEnvironment env)
     {
-        var test = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Files"));
+        //var test = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Files"));
+
+        //app.UseStaticFiles(new StaticFileOptions()
+        //{
+        //    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Files")),
+        //    RequestPath = new PathString("/Files")
+        //});
+
+        var filesPath = Path.Combine(env.ContentRootPath, "Files");
 
         app.UseStaticFiles(new StaticFileOptions()
         {
-            FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Files")),
+            FileProvider = new PhysicalFileProvider(filesPath),
             RequestPath = new PathString("/Files")
         });
 
