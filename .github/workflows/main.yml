@@ -1,4 +1,3 @@
-
 name: Deploy Eshop API 🚀
 
 on:
@@ -9,6 +8,8 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: "eshop-clean-architecture"
+  AZURE_WEBAPP_PACKAGE_PATH: "./publish"
+  
 
 jobs:
   publish:
@@ -29,11 +30,11 @@ jobs:
         run: dotnet build ./src/API/CleanArchitecture.Api/CleanArchitecture.Api.csproj --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish ./src/API/CleanArchitecture.Api/CleanArchitecture.Api.csproj --configuration Release --output ./publish
+        run: dotnet publish ./src/API/CleanArchitecture.Api/CleanArchitecture.Api.csproj --configuration Release --no-build --output '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
 
-      - name: Deploy to Azure Web App 🚀
+      - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.API_PUBLISH_SECRET }}
-          package: ./publish
+          package: "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
