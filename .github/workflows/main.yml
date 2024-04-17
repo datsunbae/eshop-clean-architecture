@@ -6,6 +6,10 @@ on:
   push:
     branches:
       - main
+
+env:
+    AZURE_WEBAPP_NAME: "eshop-clean-architecture"
+
 jobs:
   publish:
     runs-on: windows-latest
@@ -24,4 +28,12 @@ jobs:
       - name: Buid
         run: dotnet build ./src/API/CleanArchitecture.Api/CleanArchitecture.Api.csproj --configuration Release --no-restore
 
-     
+      - name: Publish
+        run: dotnet publish ./src/API/CleanArchitecture.Api/CleanArchitecture.Api.csproj --configuration Release --output ./publish
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.API_PUBLISH_SECRET }}
+          package: ./publish
