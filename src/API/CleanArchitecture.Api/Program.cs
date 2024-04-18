@@ -30,6 +30,8 @@ var app = builder.Build();
 //Seeding
 await app.Services.InitializeDatabasesAsync();
 
+await app.Services.MigrationsDatabasesAsync();
+
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{
@@ -48,6 +50,7 @@ app.MapControllers();
 app.UseInfrastructure(builder.Configuration, builder.Environment);
 app.UseApiApplication();
 app.UseInfrastructureIndentity();
+app.InitialiseDatabaseAsync();
 
 app.Services.AddOutBoxJob(builder.Configuration);
 

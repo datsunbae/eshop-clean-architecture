@@ -32,9 +32,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitecture.Api", "sr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{39088C87-756F-4938-B5C1-B844170D1D90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Application.UnitTests", "tests\CleanArchitecture.Application.UnitTests\CleanArchitecture.Application.UnitTests.csproj", "{D9543E28-7A69-4A45-B2AD-E4A05929BBA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitecture.Application.Tests.Unit", "tests\CleanArchitecture.Application.UnitTests\CleanArchitecture.Application.Tests.Unit.csproj", "{D9543E28-7A69-4A45-B2AD-E4A05929BBA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.ArchitectureTests", "tests\CleanArchitecture.ArchitectureTests\CleanArchitecture.ArchitectureTests.csproj", "{7156C773-F7C1-49A7-BDD7-DD7F59E978FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitecture.ArchitectureTests", "tests\CleanArchitecture.ArchitectureTests\CleanArchitecture.ArchitectureTests.csproj", "{7156C773-F7C1-49A7-BDD7-DD7F59E978FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Application.Common.Persistence;
-using CleanArchitecture.Domain.AggregatesModels.Baskets;
 
 namespace CleanArchitecture.Domain.AggregatesModels.Baskets.Repository;
 

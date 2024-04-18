@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Application.Common.Persistence;
-using CleanArchitecture.Domain.AggregatesModels.Categories;
 
 namespace CleanArchitecture.Domain.AggregatesModels.Categories.Repository;
 
