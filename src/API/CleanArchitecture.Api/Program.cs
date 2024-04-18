@@ -50,7 +50,6 @@ app.MapControllers();
 app.UseInfrastructure(builder.Configuration, builder.Environment);
 app.UseApiApplication();
 app.UseInfrastructureIndentity();
-app.InitialiseDatabaseAsync();
 
 app.Services.AddOutBoxJob(builder.Configuration);
 
