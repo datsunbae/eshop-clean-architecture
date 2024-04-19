@@ -35,11 +35,18 @@
 
 	<Target Name="CustomPublish" AfterTargets="Publish">
 		<ItemGroup>
-			<!-- Use relative path to the EmailTemplates directory -->
+			<AdditionalFiles Include="$(ProjectDir)EmailTemplates\email-confirmation.cshtml\**\*" />
+		</ItemGroup>
+		<Copy SourceFiles="@(AdditionalFiles)" DestinationFolder="$(PublishDir)EmailTemplates\" />
+	</Target>
+
+	<!--<Target Name="CustomPublish" AfterTargets="Publish">
+		<ItemGroup>
+			--><!-- Use relative path to the EmailTemplates directory --><!--
 			<AdditionalFiles Include="EmailTemplates\email-confirmation\**\*" />
 		</ItemGroup>
-		<!-- Update DestinationFolder to match the expected structure in Azure -->
+		--><!-- Update DestinationFolder to match the expected structure in Azure --><!--
 		<Copy SourceFiles="@(AdditionalFiles)" DestinationFolder="$(PublishDir)\wwwroot\EmailTemplates\email-confirmation\" />
-	</Target>
+	</Target>-->
 
 </Project>
