@@ -58,7 +58,7 @@ public static class DependencyInjection
 
         var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-        await context.Database.MigrateAsync();
+        await context.Database.MigrateAsync(cancellationToken);
     }
 
     private static IServiceCollection AddOutbox(this IServiceCollection services, IConfiguration configuration)
