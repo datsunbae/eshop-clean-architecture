@@ -1,7 +1,6 @@
 ﻿using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Common.Interfaces.Auth;
 using CleanArchitecture.Application.Common.Messaging;
-using CleanArchitecture.Application.Features.Identities.Users;
 using CleanArchitecture.Application.Features.V1.Baskets.Specs;
 using CleanArchitecture.Domain.AggregatesModels.Baskets;
 using CleanArchitecture.Domain.AggregatesModels.Baskets.Repository;
@@ -14,20 +13,17 @@ namespace CleanArchitecture.Application.Features.V1.Baskets.Commands.AddBasketPr
 public sealed class AddBasketProductItemCommandHandler : ICommandHandler<AddBasketProductItemCommand, Guid>
 {
     private readonly IBasketRepository _basketRepository;
-    private readonly IUserService _userServices;
-    private readonly IProductRepository _productRepository;
     private readonly ICurrentUser _currentUser;
+    private readonly IProductRepository _productRepository;
 
     public AddBasketProductItemCommandHandler(
         IBasketRepository basketRepository,
-        IUserService userService,
-        IProductRepository productRepository,
-        ICurrentUser currentUser)
+        ICurrentUser currentUser,
+        IProductRepository productRepository)
     {
         _basketRepository = basketRepository ?? throw new ArgumentNullException(nameof(basketRepository));
-        _userServices = userService ?? throw new ArgumentNullException(nameof(userService));
+        _currentUser = currentUser ?? throw new ArgumentNullException(nameof(currentUser));
         _productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
-        _currentUser = currentUser;
     }
 
     public async Task<Result<Guid>> Handle(AddBasketProductItemCommand request, CancellationToken cancellationToken)
@@ -53,7 +49,7 @@ public sealed class AddBasketProductItemCommandHandler : ICommandHandler<AddBask
         else
         {
             basket.AddBasketProductItem(request.ProductId, request.Quantity);
-            await _basketRepository.UpdateAsync(basket);
+            await _basketRepository.UpdateAsync(basket, cancellationToken);
 
             result = basket.Id;
         }

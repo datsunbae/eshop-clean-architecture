@@ -7,13 +7,12 @@ public sealed class Basket : BaseEntityRoot
 {
     private readonly List<BasketProductItem> _bastketProductItems = new();
 
-    private Basket(
-        Guid id) : base(id)
+    private Basket()
     {
     }
+
     private Basket(
-        Guid id,
-        Guid userId) : base(id)
+        Guid userId)
     {
         UserId = userId;
     }
@@ -31,13 +30,13 @@ public sealed class Basket : BaseEntityRoot
 
     public static Basket Create(Guid userId)
     {
-        Basket basket = new Basket(Guid.NewGuid(), userId);
+        Basket basket = new Basket(userId);
         return basket;
     }
 
     public static Basket Create()
     {
-        Basket basket = new Basket(Guid.NewGuid());
+        Basket basket = new Basket();
         return basket;
     }
 

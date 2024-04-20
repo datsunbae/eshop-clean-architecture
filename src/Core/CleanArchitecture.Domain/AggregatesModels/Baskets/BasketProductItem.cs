@@ -7,10 +7,9 @@ namespace CleanArchitecture.Domain.AggregatesModels.Baskets;
 public class BasketProductItem : BaseEntity
 {
     private BasketProductItem(
-        Guid id,
         Guid basketId,
         Guid productId,
-        int quantity) : base(id)
+        int quantity)
     {
         BasketId = basketId;
         ProductId = productId;
@@ -38,7 +37,6 @@ public class BasketProductItem : BaseEntity
         int quantity)
     {
         BasketProductItem basketProductItem = new BasketProductItem(
-            Guid.NewGuid(),
             basket.Id,
             productId,
             quantity);

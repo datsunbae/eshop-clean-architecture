@@ -7,12 +7,11 @@ namespace CleanArchitecture.Domain.AggregatesModels.Products;
 public sealed class Product : BaseEntityRoot
 {
     private Product(
-        Guid id,
         string name,
         string? description,
         decimal price,
         string? imagePath,
-        Guid categoryId) : base(id)
+        Guid categoryId)
     {
         Name = name;
         Description = description;
@@ -41,7 +40,6 @@ public sealed class Product : BaseEntityRoot
         Guid categoryId)
     {
         Product product = new Product(
-            Guid.NewGuid(),
             name,
             descirtion,
             price,

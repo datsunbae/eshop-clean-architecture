@@ -5,11 +5,10 @@ namespace CleanArchitecture.Domain.AggregatesModels.Orders;
 public sealed class OrderItem : BaseEntity
 {
     private OrderItem(
-        Guid id,
         Guid orderId,
         Guid productId,
         int quantity,
-        decimal price) : base(id)
+        decimal price)
     {
         OrderId = orderId;
         ProductId = productId;
@@ -25,7 +24,6 @@ public sealed class OrderItem : BaseEntity
     public static OrderItem Create(Guid orderId, Guid productId, int quantity, decimal price)
     {
         OrderItem orderItem = new OrderItem(
-            Guid.NewGuid(),
             orderId,
             productId,
             quantity,

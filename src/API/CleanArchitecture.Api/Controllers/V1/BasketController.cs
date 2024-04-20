@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning;
+using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Features.V1.Baskets.Commands.AddBasketProductItem;
 using CleanArchitecture.Application.Features.V1.Baskets.Commands.CheckoutBasket;
 using CleanArchitecture.Application.Features.V1.Baskets.Commands.ClearBasket;
@@ -37,7 +38,7 @@ namespace CleanArchitecture.Api.Controllers.V1
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpPost("{userId}")]
+        [HttpPost]
         [ProducesResponseType(typeof(Result<Guid>), StatusCodes.Status200OK)]
         public async Task<IActionResult> AddBasketProductItem([FromBody] AddBasketProductItemCommand request)
         {
@@ -50,11 +51,17 @@ namespace CleanArchitecture.Api.Controllers.V1
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpPut("remove-product-item")]
+        [HttpDelete("remove-product-item")]
         [ProducesResponseType(typeof(Result<Guid>), StatusCodes.Status200OK)]
         public async Task<IActionResult> RemoveBasketProductItem([FromBody] RemoveBasketProductItemCommand request)
         {
             var result = await Sender.Send(request);
+
+            if (result.IsFailure)
+            {
+                throw new BadRequestException(new List<Error> { result.Error });
+            }
+
             return Ok(result);
         }
 

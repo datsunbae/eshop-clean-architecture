@@ -8,9 +8,7 @@ namespace CleanArchitecture.Domain.AggregatesModels.Orders;
 public sealed class Order : BaseEntityRoot
 {
     private readonly List<OrderItem> _orderItems = new();
-    private Order(
-        Guid id,
-        Guid userId) : base(id)
+    private Order(Guid userId)
     {
         UserId = userId;
     }
@@ -27,9 +25,7 @@ public sealed class Order : BaseEntityRoot
 
     public static Order Create(Basket basket, UserInformation userInfomation)
     {
-        Order order = new Order(
-            Guid.NewGuid(),
-            basket.UserId);
+        Order order = new Order(basket.UserId);
         order.UserInformation = userInfomation;
 
         foreach(var item in basket.BasketProductItems)

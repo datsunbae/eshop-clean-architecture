@@ -4,7 +4,7 @@ namespace CleanArchitecture.Domain.AggregatesModels.Categories;
 
 public sealed class Category : BaseEntityRoot
 {
-    private Category(Guid id, string name) : base(id)
+    private Category(string name)
     {
         Name = name;
     }
@@ -13,7 +13,7 @@ public sealed class Category : BaseEntityRoot
 
     public static Category Create(string name)
     {
-        Category category = new Category(Guid.NewGuid(), name);
+        Category category = new Category(name);
         return category;
     }
 
