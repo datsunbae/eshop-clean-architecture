@@ -22,8 +22,8 @@ public sealed class GetProductsQueryHandler : IQueryHandler<GetProductsQuery, Pa
         return
             await _productRepository.PaginatedListAsync(
                 spec,
-                request.PageSize,
                 request.PageNumber,
+                request.PageSize,
                 cancellationToken);
     }
 }
