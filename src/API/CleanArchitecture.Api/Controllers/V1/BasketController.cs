@@ -1,5 +1,4 @@
 ﻿using Asp.Versioning;
-using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Features.V1.Baskets.Commands.AddBasketProductItem;
 using CleanArchitecture.Application.Features.V1.Baskets.Commands.CheckoutBasket;
 using CleanArchitecture.Application.Features.V1.Baskets.Commands.ClearBasket;
@@ -22,17 +21,13 @@ namespace CleanArchitecture.Api.Controllers.V1
         /// <summary>
         /// Get basket by user id
         /// </summary>
-        /// <param name="userId"></param>
         /// <returns></returns>
-        [HttpGet("{userId}")]
-        [ProducesResponseType(typeof(Result<BasketReponse>), StatusCodes.Status200OK)]
+        [HttpGet]
+        [ProducesResponseType(typeof(Result<BasketResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetBasket(Guid userId)
+        public async Task<IActionResult> GetBasket()
         {
-            var result = await Sender.Send(new GetBasketQuery(userId));
-
-            if (result.IsFailure)
-                throw new BadRequestException(new List<Error> { result.Error });
+            var result = await Sender.Send(new GetBasketQuery());
 
             return Ok(result);
         }

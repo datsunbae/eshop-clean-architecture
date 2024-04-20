@@ -19,11 +19,10 @@
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:CleanArchitecture.Api.Controllers.V1.BasketController.GetBasket(System.Guid)">
+        <member name="M:CleanArchitecture.Api.Controllers.V1.BasketController.GetBasket">
             <summary>
             Get basket by user id
             </summary>
-            <param name="userId"></param>
             <returns></returns>
         </member>
         <member name="M:CleanArchitecture.Api.Controllers.V1.BasketController.AddBasketProductItem(CleanArchitecture.Application.Features.V1.Baskets.Commands.AddBasketProductItem.AddBasketProductItemCommand)">

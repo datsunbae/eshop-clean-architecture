@@ -82,12 +82,12 @@ public class UsersController : ControllerBase
         return _userService.ConfirmEmailAsync(userId, code, cancellationToken);
     }
 
-    [HttpGet("confirm-phone-number")]
-    [AllowAnonymous]
-    public Task<string> ConfirmPhoneNumberAsync([FromQuery] Guid userId, [FromQuery] string code)
-    {
-        return _userService.ConfirmPhoneNumberAsync(userId, code);
-    }
+    //[HttpGet("confirm-phone-number")]
+    //[AllowAnonymous]
+    //public Task<string> ConfirmPhoneNumberAsync([FromQuery] Guid userId, [FromQuery] string code)
+    //{
+    //    return _userService.ConfirmPhoneNumberAsync(userId, code);
+    //}
 
     [HttpPost("forgot-password")]
     [AllowAnonymous]
