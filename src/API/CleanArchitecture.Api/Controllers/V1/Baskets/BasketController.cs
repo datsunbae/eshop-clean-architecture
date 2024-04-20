@@ -7,6 +7,7 @@ using CleanArchitecture.Application.Features.V1.Baskets.Commands.RemoveBasketPro
 using CleanArchitecture.Application.Features.V1.Baskets.Models.Responses;
 using CleanArchitecture.Application.Features.V1.Baskets.Queries.GetBasket;
 using CleanArchitecture.Domain.Common;
+using CleanArchitecture.Identity.Auth.Permissions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,8 +1,9 @@
-﻿using CleanArchitecture.Domain.Common;
+﻿using CleanArchitecture.Domain.AggregatesModels.Products;
+using CleanArchitecture.Domain.Common;
 
 namespace CleanArchitecture.Domain.AggregatesModels.Orders;
 
-public sealed class OrderItem : BaseEntity
+public class OrderItem : BaseEntity
 {
     private OrderItem(
         Guid orderId,
@@ -18,6 +19,7 @@ public sealed class OrderItem : BaseEntity
 
     public Guid OrderId { get; private set; }
     public Guid ProductId { get; private set; }
+    public virtual Product? Product { get; init; }
     public int Quantity { get; private set; }
     public decimal Price { get; private set; }
 

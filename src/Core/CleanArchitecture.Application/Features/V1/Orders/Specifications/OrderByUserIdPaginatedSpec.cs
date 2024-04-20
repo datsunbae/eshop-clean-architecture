@@ -15,7 +15,8 @@ public class OrderByUserIdPaginatedSpec : EntitiesByPaginationFilterSpec<Order, 
         if(currentUser.IsInRole(Roles.Customer))
         {
             Query
-                .Where(o => o.UserId == currentUser.GetUserId());
+                .Where(o => o.UserId == currentUser.GetUserId())
+                .Include(o => o.OrderItems);
         }
     }
 }

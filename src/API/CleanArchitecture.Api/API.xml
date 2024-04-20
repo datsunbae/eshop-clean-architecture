@@ -95,6 +95,14 @@
             <param name="request"></param>
             <returns></returns>
         </member>
+        <member name="M:CleanArchitecture.Api.Controllers.V1.Orders.OrderController.GetOrderById(System.Guid)">
+            <summary>
+            Get order by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+            <exception cref="T:CleanArchitecture.Application.Common.Exceptions.BadRequestException"></exception>
+        </member>
         <member name="M:CleanArchitecture.Api.Controllers.V1.Products.ProductController.GetProductPaginated(CleanArchitecture.Application.Features.V1.Products.Queries.GetProducts.GetProductsQuery)">
             <summary>
             Get the paginated product list
