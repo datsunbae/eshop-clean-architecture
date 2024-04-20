@@ -20,7 +20,7 @@ public sealed class Basket : BaseEntityRoot
 
     public Guid UserId { get; private set; }
 
-    public IReadOnlyCollection<BasketProductItem> BasketProductItems => _bastketProductItems.AsReadOnly();
+    public IReadOnlyCollection<BasketProductItem> BasketProductItems => _bastketProductItems;
 
     #region NotMapped
 

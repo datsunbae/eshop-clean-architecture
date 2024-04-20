@@ -25,7 +25,7 @@ public sealed class GetBasketQueryHandler : IQueryHandler<GetBasketQuery, Basket
 
         var result = await _basketRepository
             .FirstOrDefaultAsync(
-                (ISpecification<Basket, BasketResponse>)new BasketByUserIdWithBasketItemResultSpec(userId), cancellationToken)
+                (ISpecification<Basket, BasketResponse>)new BasketByUserIdWithBasketItemAndProductResultSpec(userId), cancellationToken)
                     ?? new BasketResponse(userId, 0, Enumerable.Empty<BasketProductItemResponse>());
 
         return result;

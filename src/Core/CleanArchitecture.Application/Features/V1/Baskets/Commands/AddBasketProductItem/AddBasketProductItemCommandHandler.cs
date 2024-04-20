@@ -32,6 +32,7 @@ public sealed class AddBasketProductItemCommandHandler : ICommandHandler<AddBask
 
     public async Task<Result<Guid>> Handle(AddBasketProductItemCommand request, CancellationToken cancellationToken)
     {
+        Guid result = Guid.Empty;
         Guid userId = _currentUser.GetUserId();
         if (userId.Equals(Guid.Empty) is true)
             throw new UnauthorizedException("Authentication Failed.");
@@ -40,19 +41,23 @@ public sealed class AddBasketProductItemCommandHandler : ICommandHandler<AddBask
         if (product is null)
             return Result.Failure<Guid>(ProductErrors.NotFound);
 
-        Basket basket = await _basketRepository.FirstOrDefaultAsync(new BasketByUserIdWithBasketItemSpec(userId));
+        Basket basket = await _basketRepository.FirstOrDefaultAsync(new BasketByUserIdWithBasketItemSpec(userId), cancellationToken);
         if (basket is null)
         {
             Basket newBasket = Basket.Create(userId);
             newBasket.AddBasketProductItem(request.ProductId, request.Quantity);
-            await _basketRepository.AddAsync(basket);
+            await _basketRepository.AddAsync(newBasket);
+
+            result = newBasket.Id;
         }
         else
         {
             basket.AddBasketProductItem(request.ProductId, request.Quantity);
             await _basketRepository.UpdateAsync(basket);
+
+            result = basket.Id;
         }
 
-        return basket.Id;
+        return result;
     }
 }
