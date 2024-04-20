@@ -28,32 +28,28 @@ public sealed class AddBasketProductItemCommandHandler : ICommandHandler<AddBask
 
     public async Task<Result<Guid>> Handle(AddBasketProductItemCommand request, CancellationToken cancellationToken)
     {
-        Guid result = Guid.Empty;
         Guid userId = _currentUser.GetUserId();
         if (userId.Equals(Guid.Empty) is true)
             throw new UnauthorizedException("Authentication Failed.");
 
-        Product product = await _productRepository.GetByIdAsync(request.ProductId);
+        var product = await _productRepository.GetByIdAsync(request.ProductId);
         if (product is null)
             return Result.Failure<Guid>(ProductErrors.NotFound);
 
-        Basket basket = await _basketRepository.FirstOrDefaultAsync(new BasketByUserIdWithBasketItemSpec(userId), cancellationToken);
+        var basket = await _basketRepository.FirstOrDefaultAsync(new BasketByUserIdWithBasketItemSpec(userId), cancellationToken);
+
         if (basket is null)
         {
-            Basket newBasket = Basket.Create(userId);
-            newBasket.AddBasketProductItem(request.ProductId, request.Quantity);
-            await _basketRepository.AddAsync(newBasket);
-
-            result = newBasket.Id;
+            basket = Basket.Create(userId);
+            basket.AddBasketProductItem(request.ProductId, request.Quantity);
+            await _basketRepository.AddAsync(basket);
         }
         else
         {
             basket.AddBasketProductItem(request.ProductId, request.Quantity);
             await _basketRepository.UpdateAsync(basket, cancellationToken);
-
-            result = basket.Id;
         }
 
-        return result;
+        return basket.Id;
     }
 }
