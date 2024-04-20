@@ -4,6 +4,7 @@ using CleanArchitecture.Application.Common.Specification;
 using CleanArchitecture.Application.Features.V1.Orders.Models.Responses;
 using CleanArchitecture.Application.Features.V1.Orders.Queries.GetOrderByUserId;
 using CleanArchitecture.Domain.AggregatesModels.Orders;
+using CleanArchitecture.Domain.Constants.Authorization;
 
 namespace CleanArchitecture.Application.Features.V1.Orders.Specifications;
 
@@ -11,7 +12,10 @@ public class OrderByUserIdPaginatedSpec : EntitiesByPaginationFilterSpec<Order, 
 {
     public OrderByUserIdPaginatedSpec(GetOrderByUserIdQuery request, ICurrentUser currentUser) : base(request)
     {
-        Query
-            .Where(o => o.UserId == currentUser.GetUserId());
+        if(currentUser.IsInRole(Roles.Customer))
+        {
+            Query
+                .Where(o => o.UserId == currentUser.GetUserId());
+        }
     }
 }

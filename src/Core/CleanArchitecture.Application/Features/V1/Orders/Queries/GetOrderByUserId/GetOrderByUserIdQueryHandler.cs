@@ -25,7 +25,7 @@ public sealed class GetOrderByUserIdQueryHandler : IQueryHandler<GetOrderByUserI
         return await _orderRepository
             .PaginatedListAsync(
                 new OrderByUserIdPaginatedSpec(request, _currentUser), 
-                request.PageSize, 
-                request.PageNumber);
+                request.PageNumber,
+                request.PageSize);
     }
 }
