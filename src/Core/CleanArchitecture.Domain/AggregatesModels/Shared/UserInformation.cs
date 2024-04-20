@@ -2,15 +2,15 @@
 
 public record UserInformation
 {
-    public string UserName { get; private set; }
+    public string Name { get; private set; }
     public Phone Phone { get; private set; }
     public Address Address { get; private set; }
 
     protected UserInformation() { }
 
-    public UserInformation(string userName, Phone phone, Address address)
+    public UserInformation(string name, Phone phone, Address address)
     {
-        UserName = userName;
+        Name = name;
         Phone = phone;
         Address = address;
     }

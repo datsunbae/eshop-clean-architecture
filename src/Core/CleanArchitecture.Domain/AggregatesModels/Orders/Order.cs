@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Domain.AggregatesModels.Baskets;
 using CleanArchitecture.Domain.AggregatesModels.Orders.Enums;
+using CleanArchitecture.Domain.AggregatesModels.Orders.Events;
 using CleanArchitecture.Domain.AggregatesModels.Shared;
 using CleanArchitecture.Domain.Common;
 
@@ -8,6 +9,7 @@ namespace CleanArchitecture.Domain.AggregatesModels.Orders;
 public sealed class Order : BaseEntityRoot
 {
     private readonly List<OrderItem> _orderItems = new();
+
     private Order(Guid userId)
     {
         UserId = userId;
@@ -33,13 +35,13 @@ public sealed class Order : BaseEntityRoot
             order.AddOrderItem(item.ProductId, item.Quantity, item.Product.Price);
         }
 
+        order.RaiseDomainEvent(new OrderCreatedDomainEvent(order.UserId));
+
         return order;
     }
 
     private void AddOrderItem(Guid productId, int quantity, decimal price)
     {
-        OrderItem orderItem = _orderItems.FirstOrDefault(o => o.ProductId == productId);
-        if (orderItem is not null)
-            _orderItems.Add(OrderItem.Create(Id, productId, quantity, price));
+        _orderItems.Add(OrderItem.Create(Id, productId, quantity, price));
     }
 }

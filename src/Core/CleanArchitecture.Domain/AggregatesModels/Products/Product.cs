@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Domain.AggregatesModels.Categories;
-using CleanArchitecture.Domain.AggregatesModels.Products.Events;
 using CleanArchitecture.Domain.Common;
 
 namespace CleanArchitecture.Domain.AggregatesModels.Products;
@@ -70,8 +69,6 @@ public sealed class Product : BaseEntityRoot
 
         if (categoryId.HasValue && CategoryId.Equals(categoryId.Value) is not true && categoryId.Value != Guid.Empty)
             CategoryId = categoryId.Value;
-
-        RaiseDomainEvent(new ProductUpdatedDomainEvent(Id));
 
         return this;
     }

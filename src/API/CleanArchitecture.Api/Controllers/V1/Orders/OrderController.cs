@@ -6,7 +6,7 @@ using CleanArchitecture.Domain.Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CleanArchitecture.Api.Controllers.V1
+namespace CleanArchitecture.Api.Controllers.V1.Orders
 {
     [ApiVersion(1)]
     public class OrderController : BaseApiController

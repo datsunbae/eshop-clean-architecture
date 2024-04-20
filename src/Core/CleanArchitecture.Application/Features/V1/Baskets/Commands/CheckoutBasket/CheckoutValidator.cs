@@ -14,8 +14,7 @@ public sealed class CheckoutValidator : AbstractValidator<CheckoutCommand>
             .NotEmpty()
             .NotNull().WithMessage("Phone number is required.")
             .MinimumLength(10).WithMessage("Phone number must not be less than 10 characters.")
-            .MaximumLength(20).WithMessage("Phone number must not exceed 50 characters.")
-            .Matches(new Regex(@"((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}")).WithMessage("Phone number not valid");
+            .MaximumLength(20).WithMessage("Phone number must not exceed 50 characters.");
 
         RuleFor(c => c.UserInformation.Address)
             .NotEmpty()

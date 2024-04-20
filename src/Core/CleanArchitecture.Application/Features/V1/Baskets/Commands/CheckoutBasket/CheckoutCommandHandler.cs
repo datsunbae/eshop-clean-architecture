@@ -27,7 +27,7 @@ public class CheckoutCommandHandler : ICommandHandler<CheckoutCommand, Guid>
         Guid userId = _currentUser.GetUserId();
 
         UserInformation userInfomation = new UserInformation(
-            request.UserInformation.UserName,
+            request.UserInformation.Name,
             new Phone(request.UserInformation.Phone),
             new Address(request.UserInformation.Address.Street, request.UserInformation.Address.City));
 

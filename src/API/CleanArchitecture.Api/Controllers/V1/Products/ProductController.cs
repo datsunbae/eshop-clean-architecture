@@ -12,7 +12,7 @@ using CleanArchitecture.Identity.Auth.Permissions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CleanArchitecture.Api.Controllers.V1;
+namespace CleanArchitecture.Api.Controllers.V1.Products;
 
 [ApiVersion(1)]
 public class ProductController : BaseApiController
@@ -85,7 +85,7 @@ public class ProductController : BaseApiController
         if (result.IsFailure)
             throw new BadRequestException(new List<Error> { result.Error });
 
-        return CreatedAtAction(nameof(GetProductById), new { Id =  result.Value}, result.Value);
+        return CreatedAtAction(nameof(GetProductById), new { Id = result.Value }, result.Value);
     }
 
     /// <summary>

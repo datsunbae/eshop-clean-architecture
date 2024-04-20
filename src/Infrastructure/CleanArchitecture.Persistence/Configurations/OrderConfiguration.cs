@@ -38,7 +38,7 @@ public sealed class OrderConfiguration : IEntityTypeConfiguration<Order>
                             .IsRequired();
                     });
 
-                userInformationBuider.Property(u => u.UserName)
+                userInformationBuider.Property(u => u.Name)
                     .IsRequired();
             });
     }

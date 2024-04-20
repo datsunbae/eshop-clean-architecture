@@ -19,62 +19,61 @@
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:CleanArchitecture.Api.Controllers.V1.BasketController.GetBasket">
+        <member name="M:CleanArchitecture.Api.Controllers.V1.Baskets.BasketController.GetBasket">
             <summary>
             Get basket by user id
             </summary>
             <returns></returns>
         </member>
-        <member name="M:CleanArchitecture.Api.Controllers.V1.BasketController.AddBasketProductItem(CleanArchitecture.Application.Features.V1.Baskets.Commands.AddBasketProductItem.AddBasketProductItemCommand)">
+        <member name="M:CleanArchitecture.Api.Controllers.V1.Baskets.BasketController.AddBasketProductItem(CleanArchitecture.Application.Features.V1.Baskets.Commands.AddBasketProductItem.AddBasketProductItemCommand)">
             <summary>
             Add product into basket
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:CleanArchitecture.Api.Controllers.V1.BasketController.RemoveBasketProductItem(CleanArchitecture.Application.Features.V1.Baskets.Commands.RemoveBasketProductItem.RemoveBasketProductItemCommand)">
+        <member name="M:CleanArchitecture.Api.Controllers.V1.Baskets.BasketController.RemoveBasketProductItem(CleanArchitecture.Application.Features.V1.Baskets.Commands.RemoveBasketProductItem.RemoveBasketProductItemCommand)">
             <summary>
             Remove product item in basket
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:CleanArchitecture.Api.Controllers.V1.BasketController.ClearBasket(CleanArchitecture.Application.Features.V1.Baskets.Commands.ClearBasket.ClearBasketCommand)">
+        <member name="M:CleanArchitecture.Api.Controllers.V1.Baskets.BasketController.ClearBasket">
             <summary>
             Clear basket
             </summary>
-            <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:CleanArchitecture.Api.Controllers.V1.BasketController.Checkout(CleanArchitecture.Application.Features.V1.Baskets.Commands.CheckoutBasket.CheckoutCommand)">
+        <member name="M:CleanArchitecture.Api.Controllers.V1.Baskets.BasketController.Checkout(CleanArchitecture.Application.Features.V1.Baskets.Commands.CheckoutBasket.CheckoutCommand)">
             <summary>
             Check out
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:CleanArchitecture.Api.Controllers.V1.CategoryController.GetPaginatedCategories(CleanArchitecture.Application.Features.V1.Categories.Queries.GetCategories.GetCategoriesQuery)">
+        <member name="M:CleanArchitecture.Api.Controllers.V1.Categories.CategoryController.GetPaginatedCategories(CleanArchitecture.Application.Features.V1.Categories.Queries.GetCategories.GetCategoriesQuery)">
             <summary>
             Get the paginated category list
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:CleanArchitecture.Api.Controllers.V1.CategoryController.GetCategoryById(System.Guid)">
+        <member name="M:CleanArchitecture.Api.Controllers.V1.Categories.CategoryController.GetCategoryById(System.Guid)">
             <summary>
             Get category by id
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:CleanArchitecture.Api.Controllers.V1.CategoryController.CreateCategory(CleanArchitecture.Application.Features.V1.Categories.Commands.CreateCategory.CreateCategoryCommand)">
+        <member name="M:CleanArchitecture.Api.Controllers.V1.Categories.CategoryController.CreateCategory(CleanArchitecture.Application.Features.V1.Categories.Commands.CreateCategory.CreateCategoryCommand)">
             <summary>
             Create category
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:CleanArchitecture.Api.Controllers.V1.CategoryController.UpdateCategory(System.Guid,CleanArchitecture.Application.Features.V1.Categories.Commands.UpdateCategory.UpdateCategoryCommand)">
+        <member name="M:CleanArchitecture.Api.Controllers.V1.Categories.CategoryController.UpdateCategory(System.Guid,CleanArchitecture.Application.Features.V1.Categories.Commands.UpdateCategory.UpdateCategoryCommand)">
             <summary>
             Update category
             </summary>
@@ -82,49 +81,49 @@
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:CleanArchitecture.Api.Controllers.V1.CategoryController.DeleteCategory(System.Guid)">
+        <member name="M:CleanArchitecture.Api.Controllers.V1.Categories.CategoryController.DeleteCategory(System.Guid)">
             <summary>
             Delete category
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:CleanArchitecture.Api.Controllers.V1.OrderController.GetOrderByUserId(CleanArchitecture.Application.Features.V1.Orders.Queries.GetOrderByUserId.GetOrderByUserIdQuery)">
+        <member name="M:CleanArchitecture.Api.Controllers.V1.Orders.OrderController.GetOrderByUserId(CleanArchitecture.Application.Features.V1.Orders.Queries.GetOrderByUserId.GetOrderByUserIdQuery)">
             <summary>
             Get orders by user id
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:CleanArchitecture.Api.Controllers.V1.ProductController.GetProductPaginated(CleanArchitecture.Application.Features.V1.Products.Queries.GetProducts.GetProductsQuery)">
+        <member name="M:CleanArchitecture.Api.Controllers.V1.Products.ProductController.GetProductPaginated(CleanArchitecture.Application.Features.V1.Products.Queries.GetProducts.GetProductsQuery)">
             <summary>
             Get the paginated product list
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:CleanArchitecture.Api.Controllers.V1.ProductController.GetProductById(System.Guid)">
+        <member name="M:CleanArchitecture.Api.Controllers.V1.Products.ProductController.GetProductById(System.Guid)">
             <summary>
             Get product by id
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:CleanArchitecture.Api.Controllers.V1.ProductController.CreateProduct(CleanArchitecture.Application.Features.V1.Products.Commands.CreateProduct.CreateProductCommand)">
+        <member name="M:CleanArchitecture.Api.Controllers.V1.Products.ProductController.CreateProduct(CleanArchitecture.Application.Features.V1.Products.Commands.CreateProduct.CreateProductCommand)">
             <summary>
             Create product
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:CleanArchitecture.Api.Controllers.V1.ProductController.UpdateProduct(CleanArchitecture.Application.Features.V1.Products.Commands.UpdateProduct.UpdateProductCommand)">
+        <member name="M:CleanArchitecture.Api.Controllers.V1.Products.ProductController.UpdateProduct(CleanArchitecture.Application.Features.V1.Products.Commands.UpdateProduct.UpdateProductCommand)">
             <summary>
             Update product
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:CleanArchitecture.Api.Controllers.V1.ProductController.DeleteProduct(System.Guid)">
+        <member name="M:CleanArchitecture.Api.Controllers.V1.Products.ProductController.DeleteProduct(System.Guid)">
             <summary>
             Delete product
             </summary>

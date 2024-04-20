@@ -10,7 +10,7 @@ using CleanArchitecture.Domain.Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CleanArchitecture.Api.Controllers.V1
+namespace CleanArchitecture.Api.Controllers.V1.Baskets
 {
     [ApiVersion(1)]
     public class BasketController : BaseApiController
@@ -86,6 +86,12 @@ namespace CleanArchitecture.Api.Controllers.V1
         public async Task<IActionResult> Checkout([FromBody] CheckoutCommand request)
         {
             var result = await Sender.Send(request);
+
+            if (result.IsFailure)
+            {
+                throw new BadRequestException(new List<Error> { result.Error });
+            }
+
             return Ok(result);
         }
     }

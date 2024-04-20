@@ -12,7 +12,7 @@ using CleanArchitecture.Identity.Auth.Permissions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CleanArchitecture.Api.Controllers.V1;
+namespace CleanArchitecture.Api.Controllers.V1.Categories;
 
 [ApiVersion(1)]
 public class CategoryController : BaseApiController
@@ -46,7 +46,7 @@ public class CategoryController : BaseApiController
     {
         Result<CategoryResponse> result = await Sender.Send(new GetCategoryByIdQuery(id));
 
-        if(result.IsFailure)
+        if (result.IsFailure)
         {
             throw new BadRequestException(new List<Error> { result.Error });
         }
@@ -79,7 +79,7 @@ public class CategoryController : BaseApiController
     [MustHavePermission(Action.Update, Resource.Categories)]
     public async Task<IActionResult> UpdateCategory(Guid id, [FromBody] UpdateCategoryCommand request)
     {
-        if(request.Id != id)
+        if (request.Id != id)
             return BadRequest();
 
         var result = await Sender.Send(request);
