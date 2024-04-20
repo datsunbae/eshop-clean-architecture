@@ -68,13 +68,12 @@ namespace CleanArchitecture.Api.Controllers.V1
         /// <summary>
         /// Clear basket
         /// </summary>
-        /// <param name="request"></param>
         /// <returns></returns>
         [HttpDelete("clear-basket")]
         [ProducesResponseType(typeof(Result<Guid>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> ClearBasket([FromBody] ClearBasketCommand request)
+        public async Task<IActionResult> ClearBasket()
         {
-            var result = await Sender.Send(request);
+            var result = await Sender.Send(new ClearBasketCommand());
             return Ok(result);
         }
 
