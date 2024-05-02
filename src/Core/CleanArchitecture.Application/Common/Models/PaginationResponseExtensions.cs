@@ -1,5 +1,4 @@
 using Ardalis.Specification;
-using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Domain.Common;
 
 namespace CleanArchitecture.Application.Common.Models;

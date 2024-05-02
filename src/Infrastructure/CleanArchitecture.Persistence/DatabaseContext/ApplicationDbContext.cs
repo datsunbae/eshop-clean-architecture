@@ -1,5 +1,5 @@
-﻿using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Common.Interfaces.Auth;
+﻿using CleanArchitecture.Application.Common.ApplicationServices.Auth;
+using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Common.Persistence;
 using CleanArchitecture.Domain.AggregatesModels.Baskets;
 using CleanArchitecture.Domain.AggregatesModels.Categories;

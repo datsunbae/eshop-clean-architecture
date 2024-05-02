@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Application.Common.Persistence;
+﻿using CleanArchitecture.Application.Common.ApplicationServices.Persistence;
 using Microsoft.Data.SqlClient;
 using System.Data;
 

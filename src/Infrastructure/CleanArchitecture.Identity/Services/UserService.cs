@@ -1,10 +1,10 @@
-using CleanArchitecture.Application.Common.Caching;
-using CleanArchitecture.Application.Common.Email;
+using CleanArchitecture.Application.Common.ApplicationServices.BackgroundJob;
+using CleanArchitecture.Application.Common.ApplicationServices.Caching;
+using CleanArchitecture.Application.Common.ApplicationServices.Email;
+using CleanArchitecture.Application.Common.ApplicationServices.FileStorage;
 using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Common.FileStorage;
-using CleanArchitecture.Application.Common.Interfaces;
+using CleanArchitecture.Application.Features.Identities.Roles;
 using CleanArchitecture.Application.Features.Identities.Users;
-using CleanArchitecture.Domain.Constants.Authorization;
 using CleanArchitecture.Identity.DatabaseContext;
 using CleanArchitecture.Identity.Entities;
 using CleanArchitecture.Identity.Events;

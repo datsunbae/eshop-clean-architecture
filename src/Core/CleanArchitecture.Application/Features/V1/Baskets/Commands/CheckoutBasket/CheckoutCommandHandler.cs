@@ -1,8 +1,7 @@
-﻿using CleanArchitecture.Application.Common.Interfaces.Auth;
+﻿using CleanArchitecture.Application.Common.ApplicationServices.Auth;
 using CleanArchitecture.Application.Common.Messaging;
 using CleanArchitecture.Application.Features.V1.Baskets.Specs;
 using CleanArchitecture.Domain.AggregatesModels.Baskets;
-using CleanArchitecture.Domain.AggregatesModels.Baskets.Repository;
 using CleanArchitecture.Domain.AggregatesModels.Orders;
 using CleanArchitecture.Domain.AggregatesModels.Shared;
 using CleanArchitecture.Domain.Common;

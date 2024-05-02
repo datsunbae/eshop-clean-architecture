@@ -1,8 +1,8 @@
-﻿using CleanArchitecture.Application.Common.Email;
+﻿using CleanArchitecture.Application.Common.ApplicationServices.FileStorage;
+using CleanArchitecture.Application.Common.Email;
 using CleanArchitecture.Application.Common.Exceptions;
+using CleanArchitecture.Application.Features.Identities.Roles;
 using CleanArchitecture.Application.Features.Identities.Users;
-using CleanArchitecture.Domain.Common;
-using CleanArchitecture.Domain.Constants.Authorization;
 using CleanArchitecture.Identity.Entities;
 using CleanArchitecture.Identity.Events;
 using CleanArchitecture.Identity.Extensions;

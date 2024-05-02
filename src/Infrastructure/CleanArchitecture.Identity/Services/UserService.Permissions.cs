@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Application.Common.Caching;
+﻿using CleanArchitecture.Application.Common.ApplicationServices.Caching;
 using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Domain.Constants.Authorization;
 using Microsoft.EntityFrameworkCore;

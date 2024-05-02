@@ -1,11 +1,10 @@
-﻿using CleanArchitecture.Application.Common.Interfaces.Auth;
+﻿using CleanArchitecture.Application.Common.ApplicationServices.Auth;
 using CleanArchitecture.Application.Common.Messaging;
+using CleanArchitecture.Application.Features.Identities.Roles;
 using CleanArchitecture.Application.Features.V1.Orders.Models.Responses;
 using CleanArchitecture.Application.Features.V1.Orders.Specifications;
 using CleanArchitecture.Domain.AggregatesModels.Orders;
-using CleanArchitecture.Domain.AggregatesModels.Orders.Repository;
 using CleanArchitecture.Domain.Common;
-using CleanArchitecture.Domain.Constants.Authorization;
 using Mapster;
 
 namespace CleanArchitecture.Application.Features.V1.Orders.Queries.GetOrderById;

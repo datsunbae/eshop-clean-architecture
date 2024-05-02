@@ -1,3 +1,4 @@
+using CleanArchitecture.Application.Features.Identities.Roles;
 using CleanArchitecture.Application.Features.Identities.Users;
 using CleanArchitecture.Application.Features.Identities.Users.Password;
 using CleanArchitecture.Identity.Auth.Permissions;

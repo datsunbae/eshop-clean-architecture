@@ -1,7 +1,6 @@
 ﻿using CleanArchitecture.Domain.AggregatesModels.Baskets;
 using CleanArchitecture.Domain.AggregatesModels.Orders;
-using CleanArchitecture.Domain.AggregatesModels.Orders.Repository;
-using CleanArchitecture.Domain.AggregatesModels.Products.Repository;
+using CleanArchitecture.Domain.AggregatesModels.Products;
 using CleanArchitecture.Domain.AggregatesModels.Shared;
 using CleanArchitecture.Domain.Common;
 

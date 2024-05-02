@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
+﻿using CleanArchitecture.Application.Common;
 using CleanArchitecture.Domain.AggregatesModels.Orders.Enums;
 
 namespace CleanArchitecture.Application.Features.V1.Orders.Models.Responses;

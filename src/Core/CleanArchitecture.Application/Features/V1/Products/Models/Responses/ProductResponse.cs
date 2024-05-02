@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
+﻿using CleanArchitecture.Application.Common;
 using CleanArchitecture.Application.Features.V1.Categories.Models.Responses;
 
 namespace CleanArchitecture.Application.Features.V1.Products.Models.Responses;

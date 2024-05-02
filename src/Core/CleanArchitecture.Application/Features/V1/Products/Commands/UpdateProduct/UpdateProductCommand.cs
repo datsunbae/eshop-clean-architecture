@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Application.Common.FileStorage;
+﻿using CleanArchitecture.Application.Common.ApplicationServices.FileStorage;
 using CleanArchitecture.Application.Common.Messaging;
 
 namespace CleanArchitecture.Application.Features.V1.Products.Commands.UpdateProduct;

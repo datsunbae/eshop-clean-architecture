@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
+﻿using CleanArchitecture.Application.Common;
 
 namespace CleanArchitecture.Application.Features.V1.Baskets.Models.Responses;
 

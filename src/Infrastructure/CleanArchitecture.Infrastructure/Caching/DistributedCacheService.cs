@@ -1,5 +1,5 @@
-using CleanArchitecture.Application.Common.Caching;
-using CleanArchitecture.Application.Common.Interfaces;
+using CleanArchitecture.Application.Common.ApplicationServices.Caching;
+using CleanArchitecture.Application.Common.ApplicationServices.Serializer;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using System.Text;

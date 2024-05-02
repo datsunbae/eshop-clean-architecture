@@ -1,5 +1,5 @@
+using CleanArchitecture.Application.Common.ApplicationServices.Auth;
 using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Common.Interfaces.Auth;
 using CleanArchitecture.Application.Common.Messaging;
 using CleanArchitecture.Application.Features.Identities.Roles;
 using CleanArchitecture.Domain.Constants.Authorization;

@@ -1,4 +1,4 @@
-using CleanArchitecture.Application.Common.Email;
+using CleanArchitecture.Application.Common.ApplicationServices.Email;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Logging;

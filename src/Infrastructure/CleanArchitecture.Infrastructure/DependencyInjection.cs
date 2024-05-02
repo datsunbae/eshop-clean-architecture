@@ -1,13 +1,16 @@
-﻿using CleanArchitecture.Application.Common.Caching;
-using CleanArchitecture.Application.Common.Email;
-using CleanArchitecture.Application.Common.FileStorage;
+﻿using CleanArchitecture.Application.Common.ApplicationServices.BackgroundJob;
+using CleanArchitecture.Application.Common.ApplicationServices.Caching;
+using CleanArchitecture.Application.Common.ApplicationServices.Email;
+using CleanArchitecture.Application.Common.ApplicationServices.FileStorage;
+using CleanArchitecture.Application.Common.ApplicationServices.Serializer;
 using CleanArchitecture.Application.Common.Interfaces;
+using CleanArchitecture.Infrastructure.BackgroundJob;
 using CleanArchitecture.Infrastructure.BackgroundJobs;
 using CleanArchitecture.Infrastructure.Caching;
 using CleanArchitecture.Infrastructure.Email;
 using CleanArchitecture.Infrastructure.FileStorage;
-using CleanArchitecture.Infrastructure.Notifications;
-using CleanArchitecture.Infrastructure.Services;
+using CleanArchitecture.Infrastructure.Notification;
+using CleanArchitecture.Infrastructure.Serializer;
 using FSH.WebApi.Infrastructure.Caching;
 using FSH.WebApi.Infrastructure.Mailing;
 using Hangfire;
@@ -55,7 +58,6 @@ public static class DependencyInjection
     private static IServiceCollection AddServices(this IServiceCollection services)
     {
         services.AddScoped<ISerializerService, NewtonSoftService>();
-        services.AddScoped<IDateTimeService, DateTimeService>();
         services.AddScoped<IJobService, HangfireService>();
 
         return services;

@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.Application.Common.Interfaces.Auth;
+﻿using CleanArchitecture.Application.Common.ApplicationServices.Auth;
 using CleanArchitecture.Application.Common.Messaging;
 using CleanArchitecture.Application.Common.Models;
 using CleanArchitecture.Application.Features.V1.Orders.Models.Responses;
 using CleanArchitecture.Application.Features.V1.Orders.Specifications;
-using CleanArchitecture.Domain.AggregatesModels.Orders.Repository;
+using CleanArchitecture.Domain.AggregatesModels.Orders;
 using CleanArchitecture.Domain.Common;
 
 namespace CleanArchitecture.Application.Features.V1.Orders.Queries.GetOrderByUserId;

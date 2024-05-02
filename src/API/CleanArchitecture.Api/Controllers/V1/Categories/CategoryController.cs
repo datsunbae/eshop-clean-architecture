@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning;
 using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Common.Models;
+using CleanArchitecture.Application.Features.Identities.Roles;
 using CleanArchitecture.Application.Features.V1.Categories.Commands.CreateCategory;
 using CleanArchitecture.Application.Features.V1.Categories.Commands.DeleteCategory;
 using CleanArchitecture.Application.Features.V1.Categories.Commands.UpdateCategory;

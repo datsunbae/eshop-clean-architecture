@@ -1,5 +1,4 @@
-using CleanArchitecture.Application.Common.FileStorage;
-using CleanArchitecture.Domain.Common;
+using CleanArchitecture.Application.Common.ApplicationServices.FileStorage;
 using CleanArchitecture.Infrastructure.Common.Extentions;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;

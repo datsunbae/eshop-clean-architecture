@@ -1,4 +1,4 @@
-using CleanArchitecture.Application.Common.Caching;
+using CleanArchitecture.Application.Common.ApplicationServices.Caching;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 

@@ -1,4 +1,4 @@
-using CleanArchitecture.Domain.Constants.Authorization;
+using CleanArchitecture.Application.Features.Identities.Roles;
 using Microsoft.AspNetCore.Authorization;
 
 namespace CleanArchitecture.Identity.Auth.Permissions;

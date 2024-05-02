@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Application.Common.Interfaces.Auth;
+﻿using CleanArchitecture.Application.Common.ApplicationServices.Auth;
 using Microsoft.AspNetCore.Http;
 
 namespace CleanArchitecture.Identity.Middlewares;

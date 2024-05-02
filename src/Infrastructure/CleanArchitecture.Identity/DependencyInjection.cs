@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Application.Common.Interfaces.Auth;
+﻿using CleanArchitecture.Application.Common.ApplicationServices.Auth;
 using CleanArchitecture.Application.Features.Identities.Authentication;
 using CleanArchitecture.Application.Features.Identities.Roles;
 using CleanArchitecture.Application.Features.Identities.Users;

@@ -1,4 +1,4 @@
-using CleanArchitecture.Application.Common.FileStorage;
+using CleanArchitecture.Application.Common.ApplicationServices.FileStorage;
 
 namespace CleanArchitecture.Application.Features.Identities.Users;
 

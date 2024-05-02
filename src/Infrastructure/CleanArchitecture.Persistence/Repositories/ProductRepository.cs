@@ -1,6 +1,5 @@
-﻿using CleanArchitecture.Application.Common.Interfaces.Auth;
+﻿using CleanArchitecture.Application.Common.ApplicationServices.Auth;
 using CleanArchitecture.Domain.AggregatesModels.Products;
-using CleanArchitecture.Domain.AggregatesModels.Products.Repository;
 using CleanArchitecture.Persistence.Common;
 
 namespace CleanArchitecture.Persistence.Repositories;

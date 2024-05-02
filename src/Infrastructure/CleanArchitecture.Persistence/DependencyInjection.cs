@@ -1,9 +1,10 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
+﻿using CleanArchitecture.Application.Common.ApplicationServices.BackgroundJob;
+using CleanArchitecture.Application.Common.ApplicationServices.Persistence;
 using CleanArchitecture.Application.Common.Persistence;
-using CleanArchitecture.Domain.AggregatesModels.Baskets.Repository;
-using CleanArchitecture.Domain.AggregatesModels.Categories.Repository;
-using CleanArchitecture.Domain.AggregatesModels.Orders.Repository;
-using CleanArchitecture.Domain.AggregatesModels.Products.Repository;
+using CleanArchitecture.Domain.AggregatesModels.Baskets;
+using CleanArchitecture.Domain.AggregatesModels.Categories;
+using CleanArchitecture.Domain.AggregatesModels.Orders;
+using CleanArchitecture.Domain.AggregatesModels.Products;
 using CleanArchitecture.Persistence.Common;
 using CleanArchitecture.Persistence.Outbox;
 using CleanArchitecture.Persistence.Repositories;

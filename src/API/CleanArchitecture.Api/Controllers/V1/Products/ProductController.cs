@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning;
 using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Common.Models;
+using CleanArchitecture.Application.Features.Identities.Roles;
 using CleanArchitecture.Application.Features.V1.Products.Commands.CreateProduct;
 using CleanArchitecture.Application.Features.V1.Products.Commands.DeleteProduct;
 using CleanArchitecture.Application.Features.V1.Products.Commands.UpdateProduct;

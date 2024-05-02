@@ -1,10 +1,10 @@
 ﻿using Ardalis.Specification;
-using CleanArchitecture.Application.Common.Interfaces.Auth;
+using CleanArchitecture.Application.Common.ApplicationServices.Auth;
 using CleanArchitecture.Application.Common.Specification;
+using CleanArchitecture.Application.Features.Identities.Roles;
 using CleanArchitecture.Application.Features.V1.Orders.Models.Responses;
 using CleanArchitecture.Application.Features.V1.Orders.Queries.GetOrderByUserId;
 using CleanArchitecture.Domain.AggregatesModels.Orders;
-using CleanArchitecture.Domain.Constants.Authorization;
 
 namespace CleanArchitecture.Application.Features.V1.Orders.Specifications;
 

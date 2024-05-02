@@ -1,10 +1,9 @@
 ﻿using Ardalis.Specification;
-using CleanArchitecture.Application.Common.Interfaces.Auth;
+using CleanArchitecture.Application.Common.ApplicationServices.Auth;
 using CleanArchitecture.Application.Common.Messaging;
 using CleanArchitecture.Application.Features.V1.Baskets.Models.Responses;
 using CleanArchitecture.Application.Features.V1.Baskets.Specifications;
 using CleanArchitecture.Domain.AggregatesModels.Baskets;
-using CleanArchitecture.Domain.AggregatesModels.Baskets.Repository;
 using CleanArchitecture.Domain.Common;
 
 namespace CleanArchitecture.Application.Features.V1.Baskets.Queries.GetBasket;

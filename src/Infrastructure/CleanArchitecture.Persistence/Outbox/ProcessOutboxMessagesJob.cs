@@ -1,5 +1,5 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Common.Persistence;
+﻿using CleanArchitecture.Application.Common.ApplicationServices.Persistence;
+using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Domain.Common;
 using Dapper;
 using MediatR;
@@ -19,20 +19,17 @@ internal sealed class ProcessOutboxMessagesJob
 
     private readonly ISqlConnectionFactory _sqlConnectionFactory;
     private readonly IPublisher _publisher;
-    private readonly IDateTimeService _dateTimeService;
     private readonly OutboxSettings _outboxOptions;
     private readonly ILogger<ProcessOutboxMessagesJob> _logger;
 
     public ProcessOutboxMessagesJob(
         ISqlConnectionFactory sqlConnectionFactory,
         IPublisher publisher,
-        IDateTimeService dateTimeService,
         IOptions<OutboxSettings> outboxOptions,
         ILogger<ProcessOutboxMessagesJob> logger)
     {
         _sqlConnectionFactory = sqlConnectionFactory;
         _publisher = publisher;
-        _dateTimeService = dateTimeService;
         _logger = logger;
         _outboxOptions = outboxOptions.Value;
     }
@@ -111,7 +108,7 @@ internal sealed class ProcessOutboxMessagesJob
             new
             {
                 outboxMessage.Id,
-                ProcessedOnUtc = _dateTimeService.NowUtc,
+                ProcessedOnUtc = DateTime.UtcNow,
                 Error = exception?.ToString()
             },
             transaction: transaction);

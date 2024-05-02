@@ -1,6 +1,5 @@
 ﻿using CleanArchitecture.Application.Common.Messaging;
 using CleanArchitecture.Domain.AggregatesModels.Categories;
-using CleanArchitecture.Domain.AggregatesModels.Categories.Repository;
 using CleanArchitecture.Domain.Common;
 using Mapster;
 

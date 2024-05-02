@@ -1,6 +1,5 @@
 ﻿using CleanArchitecture.Application.Common.Messaging;
 using CleanArchitecture.Domain.AggregatesModels.Products;
-using CleanArchitecture.Domain.AggregatesModels.Products.Repository;
 using CleanArchitecture.Domain.Common;
 
 namespace CleanArchitecture.Application.Features.V1.Products.Commands.DeleteProduct;
