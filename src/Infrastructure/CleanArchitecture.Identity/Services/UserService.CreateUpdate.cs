@@ -1,5 +1,5 @@
-﻿using CleanArchitecture.Application.Common.ApplicationServices.FileStorage;
-using CleanArchitecture.Application.Common.Email;
+﻿using CleanArchitecture.Application.Common.ApplicationServices.Email;
+using CleanArchitecture.Application.Common.ApplicationServices.FileStorage;
 using CleanArchitecture.Application.Common.Exceptions;
 using CleanArchitecture.Application.Features.Identities.Roles;
 using CleanArchitecture.Application.Features.Identities.Users;

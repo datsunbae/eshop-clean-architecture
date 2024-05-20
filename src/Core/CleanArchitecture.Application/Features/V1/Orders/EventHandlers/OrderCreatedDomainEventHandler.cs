@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Application.Common.ApplicationServices.Email;
-using CleanArchitecture.Application.Common.Email;
 using CleanArchitecture.Application.Common.Messaging;
 using CleanArchitecture.Application.Features.Identities.Users;
 using CleanArchitecture.Domain.AggregatesModels.Orders.Events;

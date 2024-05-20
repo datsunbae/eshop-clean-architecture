@@ -3,8 +3,6 @@ using CleanArchitecture.Application.Common.ApplicationServices.Caching;
 using CleanArchitecture.Application.Common.ApplicationServices.Email;
 using CleanArchitecture.Application.Common.ApplicationServices.FileStorage;
 using CleanArchitecture.Application.Common.ApplicationServices.Serializer;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Infrastructure.BackgroundJob;
 using CleanArchitecture.Infrastructure.BackgroundJobs;
 using CleanArchitecture.Infrastructure.Caching;
 using CleanArchitecture.Infrastructure.Email;

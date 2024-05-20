@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Application.Common.ApplicationServices.Persistence;
-using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Domain.Common;
 using Dapper;
 using MediatR;

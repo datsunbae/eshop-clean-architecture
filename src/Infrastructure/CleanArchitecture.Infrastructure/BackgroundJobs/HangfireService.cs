@@ -2,7 +2,7 @@
 using Hangfire;
 using System.Linq.Expressions;
 
-namespace CleanArchitecture.Infrastructure.BackgroundJob;
+namespace CleanArchitecture.Infrastructure.BackgroundJobs;
 
 public class HangfireService : IJobService
 {

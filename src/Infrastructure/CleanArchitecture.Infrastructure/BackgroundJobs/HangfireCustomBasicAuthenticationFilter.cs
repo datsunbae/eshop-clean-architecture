@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Primitives;
 using System.Net.Http.Headers;
 
-namespace CleanArchitecture.Infrastructure.BackgroundJob;
+namespace CleanArchitecture.Infrastructure.BackgroundJobs;
 
 public class HangfireCustomBasicAuthenticationFilter : IDashboardAuthorizationFilter
 {
